@@ -232,7 +232,7 @@
     }
     <span class="keyword">return</span> <span class="literal">YES</span>;
 }    
-</code></pre><h1 id="接下来需要改写AFNetworking的两处代码">接下来需要改写AFNetworking的两处代码</h1><h2 id="1-_文件AFURLConnectionOperation-m，此处是针对AFHTTPRequestOperationManager方式的请求。">1. 文件<strong>AFURLConnectionOperation.m</strong>，此处是针对<strong>AFHTTPRequestOperationManager</strong>方式的请求。</h2><pre><code>- (<span class="typename">void</span>)<span class="string">connection:</span>(NSURLConnection *)connection <span class="string">willSendRequestForAuthenticationChallenge:</span>(NSURLAuthenticationChallenge *)challenge
+</code></pre><h1 id="接下来需要重写AFNetworking的两个类的方法。">接下来需要重写AFNetworking的两个类的方法。</h1><h2 id="1-_文件AFURLConnectionOperation-m，此处是针对AFHTTPRequestOperationManager方式的请求。">1. 文件<strong>AFURLConnectionOperation.m</strong>，此处是针对<strong>AFHTTPRequestOperationManager</strong>方式的请求。</h2><pre><code>- (<span class="typename">void</span>)<span class="string">connection:</span>(NSURLConnection *)connection <span class="string">willSendRequestForAuthenticationChallenge:</span>(NSURLAuthenticationChallenge *)challenge
 {
     <span class="comment">//此处的[SSL_SecIdentity secIdentity] 既是上面所得到的SecIdentityRef对象 在下写了个类方法来获取</span>
     NSURLCredential* credential = [[NSURLCredential alloc] <span class="string">initWithIdentity:</span>[SSL_SecIdentity secIdentity] <span class="string">certificates:</span>nil <span class="string">persistence:</span>NSURLCredentialPersistenceForSession];
