@@ -103,7 +103,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AFNetworking/" style="font-size: 10px;">AFNetworking</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/单向认证/" style="font-size: 10px;">单向认证</a> <a href="/tags/李白/" style="font-size: 10px;">李白</a> <a href="/tags/王菲/" style="font-size: 10px;">王菲</a> <a href="/tags/邓丽君/" style="font-size: 10px;">邓丽君</a>
+						<a href="/tags/AFNetworking/" style="font-size: 10px;">AFNetworking</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/单向认证/" style="font-size: 10px;">单向认证</a> <a href="/tags/李白/" style="font-size: 10px;">李白</a> <a href="/tags/王菲/" style="font-size: 10px;">王菲</a> <a href="/tags/邓丽君/" style="font-size: 10px;">邓丽君</a>
 					</div>
 				</section>
 				
@@ -162,6 +162,80 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Interface-Builder" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/18/Interface-Builder/" class="article-date">
+  	<time datetime="2015-10-18T13:32:49.000Z" itemprop="datePublished">2015-10-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/18/Interface-Builder/">Interface Builder</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，<br>准备在项目里尝试用一下nib这一块。</p>
+<hr>
+<h1 id="size_class">size class</h1><ul>
+<li>分为C（紧凑） A（任意） R（正常） 三种，<br>假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做</li>
+<li>一般情况下都是 wA+hA 情况</li>
+<li>iphone：正面向上的情况是 wC＋hR，其他面向情况都是 wC＋hC</li>
+<li>ipad：长和宽都是regular</li>
+</ul>
+<hr>
+<h1 id="interface_builder">interface builder</h1><h2 id="customview+nib">customview+nib</h2><ul>
+<li>自定义view的话，file owner 设置为self的类</li>
+<li>一般大家都只生成一个 view，然后将view添加到self，当作subview</li>
+<li>view只是self的一个属性</li>
+<li>view的类型不能设置为self，这样会导致循环引用，会崩溃</li>
+</ul>
+<h2 id="drawrect+nib">drawrect+nib</h2><ul>
+<li>这个到要把view的类型设置成self的类型</li>
+<li>有两个关键词：IB_DESIGNABLE（表示这个要实时在interface builder展示啦）和IBInspectable（动态属性），可以在interface builder上设置，确实很惊艳</li>
+<li>不过这种目前只能在<strong>- (void)drawRect:(CGRect)rect</strong>方法里有效，不过这已经很不错了，不过还没想好在哪用。。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOS/">IOS</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-AFNetworking+SSL" class="article article-type-post" itemscope itemprop="blogPost">
   

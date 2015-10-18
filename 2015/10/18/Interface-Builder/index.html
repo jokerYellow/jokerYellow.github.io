@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015 | 所想所得</title>
+  <title>Interface Builder | 所想所得</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="所想所得">
-<meta property="og:url" content="http://yoursite.com/archives/2015/index.html">
+  <meta name="description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。
+
+size class
+分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做
+一般情况下都是 wA+hA 情况
+iphone：正面向上的情况是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interface Builder">
+<meta property="og:url" content="http://yoursite.com/2015/10/18/Interface-Builder/index.html">
 <meta property="og:site_name" content="所想所得">
-<meta property="og:description">
+<meta property="og:description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。
+
+size class
+分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做
+一般情况下都是 wA+hA 情况
+iphone：正面向上的情况是">
+<meta property="og:updated_time" content="2015-10-18T15:48:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="所想所得">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Interface Builder">
+<meta name="twitter:description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。
+
+size class
+分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做
+一般情况下都是 wA+hA 情况
+iphone：正面向上的情况是">
   
     <link rel="alternative" href="/atom.xml" title="所想所得" type="application/atom+xml">
   
@@ -161,146 +177,122 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Interface-Builder" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/10/18/Interface-Builder/" class="archive-article-date">
-  	<time datetime="2015-10-18T13:32:49.000Z" itemprop="datePublished">Oct 18</time>
+    <div class="article-meta">
+      <a href="/2015/10/18/Interface-Builder/" class="article-date">
+  	<time datetime="2015-10-18T13:32:49.000Z" itemprop="datePublished">2015-10-18</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/10/18/Interface-Builder/">Interface Builder</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Interface Builder
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOS/">IOS</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/07/15/AFNetworking+SSL/" class="archive-article-date">
-  	<time datetime="2015-07-15T12:57:56.000Z" itemprop="datePublished">Jul 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/15/AFNetworking+SSL/">AFNetworking SSL 单向认证（仅客户端）</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，<br>准备在项目里尝试用一下nib这一块。</p>
+<hr>
+<h1 id="size_class">size class</h1><ul>
+<li>分为C（紧凑） A（任意） R（正常） 三种，<br>假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做</li>
+<li>一般情况下都是 wA+hA 情况</li>
+<li>iphone：正面向上的情况是 wC＋hR，其他面向情况都是 wC＋hC</li>
+<li>ipad：长和宽都是regular</li>
+</ul>
+<hr>
+<h1 id="interface_builder">interface builder</h1><h2 id="customview+nib">customview+nib</h2><ul>
+<li>自定义view的话，file owner 设置为self的类</li>
+<li>一般大家都只生成一个 view，然后将view添加到self，当作subview</li>
+<li>view只是self的一个属性</li>
+<li>view的类型不能设置为self，这样会导致循环引用，会崩溃</li>
+</ul>
+<h2 id="drawrect+nib">drawrect+nib</h2><ul>
+<li>这个到要把view的类型设置成self的类型</li>
+<li>有两个关键词：IB_DESIGNABLE（表示这个要实时在interface builder展示啦）和IBInspectable（动态属性），可以在interface builder上设置，确实很惊艳</li>
+<li>不过这种目前只能在<strong>- (void)drawRect:(CGRect)rect</strong>方法里有效，不过这已经很不错了，不过还没想好在哪用。。</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AFNetworking/">AFNetworking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSL/">SSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单向认证/">单向认证</a></li></ul>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/15/AFNetworking+SSL/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AFNetworking SSL 单向认证（仅客户端）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/07/03/清平调/" class="archive-article-date">
-  	<time datetime="2015-07-03T14:16:28.000Z" itemprop="datePublished">Jul 3</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/03/清平调/">清平调</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/李白/">李白</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/王菲/">王菲</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/邓丽君/">邓丽君</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/诗文/">诗文</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/07/03/hello-world/" class="archive-article-date">
-  	<time datetime="2015-07-03T12:13:07.000Z" itemprop="datePublished">Jul 3</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/03/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Interface-Builder" data-title="Interface Builder" data-url="http://yoursite.com/2015/10/18/Interface-Builder/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
 
 </div>
       <footer id="footer">
@@ -326,8 +318,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
