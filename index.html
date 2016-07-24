@@ -443,7 +443,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位看官有所帮助。</p>
+        <p>以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。</p>
 <h1 id="首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX-p12。">首先把证书提取出来，得到<strong>SecIdentityRef</strong>对象供接下来使用。证书格式为：<strong>XXX.p12</strong>。</h1><pre><code>+(SecIdentityRef)secIdentity{
     <span class="keyword">static</span> SecIdentityRef identity = <span class="literal">NULL</span>;
     <span class="keyword">if</span> (identity == <span class="literal">nil</span>) {
@@ -503,7 +503,7 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
         completionHandler(disposition, credential);
     }
 }
-</code></pre><h1 id="经过以上设置以后，在下便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供列为看官参考，也权当做了个笔记供以后参考。如有误导，请各位海涵。">经过以上设置以后，在下便成功调用了<strong>https</strong>请求。由于只是单向，没有对服务器进行验证，所以没有对<strong>AFSecurityPolicy</strong>相关进行任何设置。本人对<strong>openssl</strong>这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供列为看官参考，也权当做了个笔记供以后参考。如有误导，请各位海涵。</h1>
+</code></pre><h1 id="经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。">经过以上设置以后，我便成功调用了<strong>https</strong>请求。由于只是单向，没有对服务器进行验证，所以没有对<strong>AFSecurityPolicy</strong>相关进行任何设置。本人对<strong>openssl</strong>这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。</h1>
       
     </div>
     
