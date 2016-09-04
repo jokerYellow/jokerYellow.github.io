@@ -103,7 +103,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AFNetworking/" style="font-size: 10px;">AFNetworking</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/单向认证/" style="font-size: 10px;">单向认证</a> <a href="/tags/李白/" style="font-size: 10px;">李白</a> <a href="/tags/王菲/" style="font-size: 10px;">王菲</a> <a href="/tags/邓丽君/" style="font-size: 10px;">邓丽君</a> <a href="/tags/项目开发实践/" style="font-size: 10px;">项目开发实践</a>
+						<a href="/tags/AFNetworking/" style="font-size: 10px;">AFNetworking</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/React-Native/" style="font-size: 10px;">React Native</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/单向认证/" style="font-size: 10px;">单向认证</a> <a href="/tags/李白/" style="font-size: 10px;">李白</a> <a href="/tags/王菲/" style="font-size: 10px;">王菲</a> <a href="/tags/邓丽君/" style="font-size: 10px;">邓丽君</a> <a href="/tags/项目开发实践/" style="font-size: 10px;">项目开发实践</a>
 					</div>
 				</section>
 				
@@ -162,6 +162,62 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-React-Native-environment-setup" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/04/React-Native-environment-setup/" class="article-date">
+  	<time datetime="2016-09-04T10:50:01.000Z" itemprop="datePublished">2016-09-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/04/React-Native-environment-setup/">React Native 初探一：Mac + iOS 开发环境搭建</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基础环境">基础环境</h2><p>1 . 安装 node 和 watchman。<br>    <code>brew install node</code><br>    <code>brew install watchman</code><br>2 . 安装 React Native。<br>    <code>npm install -g react-native-cli</code><br>    如遇到权限问题，请用<br>    <code>sudo npm install -g react-native-cli</code><br>3 . 安装 Xcode，<a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12" target="_blank" rel="external">Mac App Store</a> 安装既可。<br>4 . 验证是否安装成功，可通过如下命令新建和启动项目试试。<br>    <code>react-native init demoProject</code>新建<br>    <code>cd demoProject</code><br>    <code>react-native run-ios</code>运行<br>    启动过程中如果遇到问题，可能是初始化中漏装了一个包，解决途径执行。<br>    <code>npm install</code><br>    再启动，网上下载的项目出现启动问题也可尝试执行此命令。</p>
+<h2 id="开发工具">开发工具</h2><p>1 . 接下来选择趁手的 IDE，尝试过 Sublime 和 atom 之后，目前我使用的 WebStorm + <a href="https://github.com/virtoolswebplayer/ReactNative-LiveTemplate" target="_blank" rel="external">ReactNative-LiveTemplate插件</a>。<br>2 . 日志可以在项目路径下执行以下命令查看。<br>    <code>react-native log-ios</code><br>3 . Debug 起来也很方便，请先安装好 Chrome，在 iOS 模拟器中 <em>Command⌘ + D</em>，选择 <em>Debug JS Remotely</em>，就可以在 Chrome 愉快的 Debug 了，其它的选项也可以尝试一下，感慨 ReactNative 真是一个伟大的项目，前端真是神奇，FaceBook 真是一个伟大的公司。<br><strong>以上信息全部来自<a href="https://facebook.github.io/react-native/" target="_blank" rel="external">React Native官网</a>。</strong></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-Native/">React Native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-prototype-pratice" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -397,7 +453,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOS/">IOS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 	</div>
 
       

@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016 | 蜀道难</title>
+  <title>React Native 初探一：Mac + iOS 开发环境搭建 | 蜀道难</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="蜀道之难，难于上青天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="蜀道难">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="基础环境1 . 安装 node 和 watchman。    brew install node    brew install watchman2 . 安装 React Native。    npm install -g react-native-cli    如遇到权限问题，请用    sudo npm install -g react-native-cli3 . 安装 Xcode，Mac A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native 初探一：Mac + iOS 开发环境搭建">
+<meta property="og:url" content="http://yoursite.com/2016/09/04/React-Native-environment-setup/index.html">
 <meta property="og:site_name" content="蜀道难">
-<meta property="og:description" content="蜀道之难，难于上青天">
+<meta property="og:description" content="基础环境1 . 安装 node 和 watchman。    brew install node    brew install watchman2 . 安装 React Native。    npm install -g react-native-cli    如遇到权限问题，请用    sudo npm install -g react-native-cli3 . 安装 Xcode，Mac A">
+<meta property="og:updated_time" content="2016-09-04T11:15:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蜀道难">
-<meta name="twitter:description" content="蜀道之难，难于上青天">
+<meta name="twitter:title" content="React Native 初探一：Mac + iOS 开发环境搭建">
+<meta name="twitter:description" content="基础环境1 . 安装 node 和 watchman。    brew install node    brew install watchman2 . 安装 React Native。    npm install -g react-native-cli    如遇到权限问题，请用    sudo npm install -g react-native-cli3 . 安装 Xcode，Mac A">
   
     <link rel="alternative" href="/atom.xml" title="蜀道难" type="application/atom+xml">
   
@@ -161,111 +162,104 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-React-Native-environment-setup" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/04/React-Native-environment-setup/" class="archive-article-date">
-  	<time datetime="2016-09-04T10:50:01.000Z" itemprop="datePublished">Sep 4</time>
+    <div class="article-meta">
+      <a href="/2016/09/04/React-Native-environment-setup/" class="article-date">
+  	<time datetime="2016-09-04T10:50:01.000Z" itemprop="datePublished">2016-09-04</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/04/React-Native-environment-setup/">React Native 初探一：Mac + iOS 开发环境搭建</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React Native 初探一：Mac + iOS 开发环境搭建
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-Native/">React Native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/24/prototype-pratice/" class="archive-article-date">
-  	<time datetime="2016-07-24T13:38:57.000Z" itemprop="datePublished">Jul 24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/24/prototype-pratice/">原型理解碎碎念</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基础环境">基础环境</h2><p>1 . 安装 node 和 watchman。<br>    <code>brew install node</code><br>    <code>brew install watchman</code><br>2 . 安装 React Native。<br>    <code>npm install -g react-native-cli</code><br>    如遇到权限问题，请用<br>    <code>sudo npm install -g react-native-cli</code><br>3 . 安装 Xcode，<a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12" target="_blank" rel="external">Mac App Store</a> 安装既可。<br>4 . 验证是否安装成功，可通过如下命令新建和启动项目试试。<br>    <code>react-native init demoProject</code>新建<br>    <code>cd demoProject</code><br>    <code>react-native run-ios</code>运行<br>    启动过程中如果遇到问题，可能是初始化中漏装了一个包，解决途径执行。<br>    <code>npm install</code><br>    再启动，网上下载的项目出现启动问题也可尝试执行此命令。</p>
+<h2 id="开发工具">开发工具</h2><p>1 . 接下来选择趁手的 IDE，尝试过 Sublime 和 atom 之后，目前我使用的 WebStorm + <a href="https://github.com/virtoolswebplayer/ReactNative-LiveTemplate" target="_blank" rel="external">ReactNative-LiveTemplate插件</a>。<br>2 . 日志可以在项目路径下执行以下命令查看。<br>    <code>react-native log-ios</code><br>3 . Debug 起来也很方便，请先安装好 Chrome，在 iOS 模拟器中 <em>Command⌘ + D</em>，选择 <em>Debug JS Remotely</em>，就可以在 Chrome 愉快的 Debug 了，其它的选项也可以尝试一下，感慨 ReactNative 真是一个伟大的项目，前端真是神奇，FaceBook 真是一个伟大的公司。<br><strong>以上信息全部来自<a href="https://facebook.github.io/react-native/" target="_blank" rel="external">React Native官网</a>。</strong></p>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目开发实践/">项目开发实践</a></li></ul>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/24/prototype-pratice/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">原型理解碎碎念</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/31/hello-world/" class="archive-article-date">
-  	<time datetime="2016-03-31T11:57:17.000Z" itemprop="datePublished">Mar 31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/31/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="React-Native-environment-setup" data-title="React Native 初探一：Mac + iOS 开发环境搭建" data-url="http://yoursite.com/2016/09/04/React-Native-environment-setup/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
 
 </div>
       <footer id="footer">
@@ -291,8 +285,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
