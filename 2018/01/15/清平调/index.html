@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="李白,王菲,邓丽君," />
 
 
 
@@ -94,19 +94,22 @@
 
 
 
-<meta name="description" content="今天研究了一下 Jenkins 的签名配置，进而由 Jenkins 的日志，顺藤摸瓜到了 Xcodebuild 和 xcrun 两个工具。
-Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile 和 codeSign，生成 IPA 文件，还有现在Xcode新出了个什么鬼 autoManager 的功能，十分讨厌，生成的 profile 在 membersh">
+<meta name="description" content="云想衣裳花相容，春风拂槛露华浓。若非群玉山头见，会向瑶台月下逢。
+一枝秾艳露凝香，云雨巫山枉断肠。借问汉宫谁得似，可怜飞燕倚新妆。
+名花倾国两相欢，长得君王带笑看。解释春风无限恨，沉香亭北倚阑干。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xcode_CI">
-<meta property="og:url" content="http://yoursite.com/2017/04/19/Xcode-CI/index.html">
+<meta property="og:title" content="清平调">
+<meta property="og:url" content="http://yoursite.com/2018/01/15/清平调/index.html">
 <meta property="og:site_name" content="蜀道难">
-<meta property="og:description" content="今天研究了一下 Jenkins 的签名配置，进而由 Jenkins 的日志，顺藤摸瓜到了 Xcodebuild 和 xcrun 两个工具。
-Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile 和 codeSign，生成 IPA 文件，还有现在Xcode新出了个什么鬼 autoManager 的功能，十分讨厌，生成的 profile 在 membersh">
-<meta property="og:updated_time" content="2017-04-19T13:08:50.000Z">
+<meta property="og:description" content="云想衣裳花相容，春风拂槛露华浓。若非群玉山头见，会向瑶台月下逢。
+一枝秾艳露凝香，云雨巫山枉断肠。借问汉宫谁得似，可怜飞燕倚新妆。
+名花倾国两相欢，长得君王带笑看。解释春风无限恨，沉香亭北倚阑干。">
+<meta property="og:updated_time" content="2018-01-15T13:02:49.578Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xcode_CI">
-<meta name="twitter:description" content="今天研究了一下 Jenkins 的签名配置，进而由 Jenkins 的日志，顺藤摸瓜到了 Xcodebuild 和 xcrun 两个工具。
-Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile 和 codeSign，生成 IPA 文件，还有现在Xcode新出了个什么鬼 autoManager 的功能，十分讨厌，生成的 profile 在 membersh">
+<meta name="twitter:title" content="清平调">
+<meta name="twitter:description" content="云想衣裳花相容，春风拂槛露华浓。若非群玉山头见，会向瑶台月下逢。
+一枝秾艳露凝香，云雨巫山枉断肠。借问汉宫谁得似，可怜飞燕倚新妆。
+名花倾国两相欢，长得君王带笑看。解释春风无限恨，沉香亭北倚阑干。">
 
 
 
@@ -135,13 +138,13 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/19/Xcode-CI/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/15/清平调/"/>
 
 
 
 
 
-  <title>Xcode_CI | 蜀道难</title>
+  <title>清平调 | 蜀道难</title>
   
 
 
@@ -259,12 +262,12 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/19/Xcode-CI/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/15/清平调/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李白白">
@@ -281,7 +284,7 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
 
         
         
-          <h1 class="post-title" itemprop="name headline">Xcode_CI</h1>
+          <h1 class="post-title" itemprop="name headline">清平调</h1>
         
 
         <div class="post-meta">
@@ -293,8 +296,8 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-04-19T19:21:53+08:00">
-                2017-04-19
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-01-15T21:02:49+08:00">
+                2018-01-15
               </time>
             
 
@@ -303,6 +306,28 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/诗文/" itemprop="url" rel="index">
+                    <span itemprop="name">诗文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -331,9 +356,9 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
       
 
       
-        <p>今天研究了一下 Jenkins 的签名配置，进而由 Jenkins 的日志，顺藤摸瓜到了 Xcodebuild 和 xcrun 两个工具。</p>
-<p>Jenkins 的配置<br>XcodeBuild 主要用来编译，<br>xcRun 则用来进行 profile 和 codeSign，生成 IPA 文件，还有现在Xcode新出了个什么鬼 autoManager 的功能，十分讨厌，生成的 profile 在 membership 里面找不到。不好设置</p>
-<p>查看prifile文件<br>security cms -D -i XXX.mobileprovision</p>
+        <p>云想衣裳花相容，春风拂槛露华浓。<br>若非群玉山头见，会向瑶台月下逢。</p>
+<p>一枝秾艳露凝香，云雨巫山枉断肠。<br>借问汉宫谁得似，可怜飞燕倚新妆。</p>
+<p>名花倾国两相欢，长得君王带笑看。<br>解释春风无限恨，沉香亭北倚阑干。</p>
 
       
     </div>
@@ -349,6 +374,16 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/李白/" rel="tag"># 李白</a>
+          
+            <a href="/tags/王菲/" rel="tag"># 王菲</a>
+          
+            <a href="/tags/邓丽君/" rel="tag"># 邓丽君</a>
+          
+        </div>
+      
 
       
       
@@ -358,8 +393,8 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/20/multithreading/" rel="next" title="闲话iOS多线程">
-                <i class="fa fa-chevron-left"></i> 闲话iOS多线程
+              <a href="/2017/04/19/Xcode-CI/" rel="next" title="Xcode_CI">
+                <i class="fa fa-chevron-left"></i> Xcode_CI
               </a>
             
           </div>
@@ -367,10 +402,6 @@ Jenkins 的配置XcodeBuild 主要用来编译，xcRun 则用来进行 profile �
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/15/清平调/" rel="prev" title="清平调">
-                清平调 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
