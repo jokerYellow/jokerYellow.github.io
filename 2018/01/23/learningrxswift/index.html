@@ -94,16 +94,17 @@
 
 
 
-<meta name="description" content="蜀道之难，难于上青天">
-<meta property="og:type" content="website">
-<meta property="og:title" content="蜀道难">
-<meta property="og:url" content="http://yoursite.com/categories/诗文/index.html">
+<meta name="description" content="#rule 1  Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all inte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习 RxSwift">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/learningrxswift/index.html">
 <meta property="og:site_name" content="蜀道难">
-<meta property="og:description" content="蜀道之难，难于上青天">
+<meta property="og:description" content="#rule 1  Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all inte">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-07T04:01:23.004Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蜀道难">
-<meta name="twitter:description" content="蜀道之难，难于上青天">
+<meta name="twitter:title" content="学习 RxSwift">
+<meta name="twitter:description" content="#rule 1  Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all inte">
 
 
 
@@ -132,14 +133,14 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/诗文/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/23/learningrxswift/"/>
 
 
 
 
 <link rel="apple-touch-icon" href="/images/logo_icon.jpg">
 
-  <title>Category: 诗文 | 蜀道难</title>
+  <title>学习 RxSwift | 蜀道难</title>
   
 
 
@@ -164,7 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,55 +249,160 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>诗文<small>Category</small>
-        </h1>
-      </div>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/learningrxswift/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李白白">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蜀道难">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习 RxSwift</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T19:58:38+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/03/清平调/" itemprop="url">
-              
-                <span itemprop="name">清平调</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-07-03T21:51:34+08:00"
-              content="2015-07-03" >
-          07-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p>#rule 1</p>
+<ul>
+<li>Sequences can have 0 or more elements.</li>
+<li>Once an error or completed event is received, the sequence cannot produce any other element.</li>
+<li>When a sequence sends the completed or error event all internal resources that compute sequence elements will be freed.</li>
+<li>To cancel production of sequence elements and free resources immediately, call dispose on the returned subscription.</li>
+</ul>
+<p>#rule 2</p>
+<ul>
+<li>onNext 没结束之前，onComplete、onError、onNext都不会开始执行</li>
+<li>dispose被释放之后，其相关的订阅都会执行dispose</li>
+<li>Observerable，subscribe是同步的</li>
+<li>可被订阅者，被订阅者，可被订阅，之后发布消息</li>
+<li>订阅者，订阅者发布消息</li>
+</ul>
+<p>#other<br>现在只是用熟练了绑定，监听。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/15/2017summary/" rel="next" title="一个总结">
+                <i class="fa fa-chevron-left"></i> 一个总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/23/swiftdecoupling/" rel="prev" title="Swift 下的解耦">
+                Swift 下的解耦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -304,6 +410,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -500,10 +610,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 

@@ -94,31 +94,18 @@
 
 
 
-<meta name="description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。
-
-size class
-分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做
-一般情况下都是 wA+hA 情况
-iphone：正面向上的情况是">
+<meta name="description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。  #size class  分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做 一般情况下都是 wA+hA 情况 iphone：正面向上的情">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Interface Builder">
 <meta property="og:url" content="http://yoursite.com/2015/10/18/Interface-Builder/index.html">
 <meta property="og:site_name" content="蜀道难">
-<meta property="og:description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。
-
-size class
-分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做
-一般情况下都是 wA+hA 情况
-iphone：正面向上的情况是">
+<meta property="og:description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。  #size class  分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做 一般情况下都是 wA+hA 情况 iphone：正面向上的情">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-09-04T11:08:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Interface Builder">
-<meta name="twitter:description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。
-
-size class
-分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做
-一般情况下都是 wA+hA 情况
-iphone：正面向上的情况是">
+<meta name="twitter:description" content="**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。  #size class  分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做 一般情况下都是 wA+hA 情况 iphone：正面向上的情">
 
 
 
@@ -133,7 +120,7 @@ iphone：正面向上的情况是">
     motion: true,
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -172,7 +159,7 @@ iphone：正面向上的情况是">
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -220,7 +207,7 @@ iphone：正面向上的情况是">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首頁
+            Home
           </a>
         </li>
       
@@ -230,7 +217,7 @@ iphone：正面向上的情况是">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            歸檔
+            Archives
           </a>
         </li>
       
@@ -240,7 +227,7 @@ iphone：正面向上的情况是">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            標籤
+            Tags
           </a>
         </li>
       
@@ -304,9 +291,9 @@ iphone：正面向上的情况是">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">發表於</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2015-10-18T21:32:49+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-18T21:32:49+08:00">
                 2015-10-18
               </time>
             
@@ -346,20 +333,24 @@ iphone：正面向上的情况是">
       
         <p>**这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，<br>准备在项目里尝试用一下nib这一块。</p>
 <hr>
-<h1 id="size_class">size class</h1><ul>
+<p>#size class</p>
+<ul>
 <li>分为C（紧凑） A（任意） R（正常） 三种，<br>假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做</li>
 <li>一般情况下都是 wA+hA 情况</li>
 <li>iphone：正面向上的情况是 wC＋hR，其他面向情况都是 wC＋hC</li>
 <li>ipad：长和宽都是regular</li>
 </ul>
 <hr>
-<h1 id="interface_builder">interface builder</h1><h2 id="customview+nib">customview+nib</h2><ul>
+<p>#interface builder</p>
+<p>##customview+nib</p>
+<ul>
 <li>自定义view的话，file owner 设置为self的类</li>
 <li>一般大家都只生成一个 view，然后将view添加到self，当作subview</li>
 <li>view只是self的一个属性</li>
 <li>view的类型不能设置为self，这样会导致循环引用，会崩溃</li>
 </ul>
-<h2 id="drawrect+nib">drawrect+nib</h2><ul>
+<p>##drawrect+nib</p>
+<ul>
 <li>这个到要把view的类型设置成self的类型</li>
 <li>有两个关键词：IB_DESIGNABLE（表示这个要实时在interface builder展示啦）和IBInspectable（动态属性），可以在interface builder上设置，确实很惊艳</li>
 <li>不过这种目前只能在<strong>- (void)drawRect:(CGRect)rect</strong>方法里有效，不过这已经很不错了，不过还没想好在哪用。。</li>
@@ -458,17 +449,8 @@ iphone：正面向上的情况是">
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -483,8 +465,8 @@ iphone：正面向上的情况是">
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">文章</span>
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -495,7 +477,7 @@ iphone：正面向上的情况是">
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">分類</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
@@ -506,7 +488,7 @@ iphone：正面向上的情况是">
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">標籤</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -531,22 +513,6 @@ iphone：正面向上的情况是">
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#size_class"><span class="nav-number">1.</span> <span class="nav-text">size class</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#interface_builder"><span class="nav-number">2.</span> <span class="nav-text">interface builder</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#customview+nib"><span class="nav-number">2.1.</span> <span class="nav-text">customview+nib</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#drawrect+nib"><span class="nav-number">2.2.</span> <span class="nav-text">drawrect+nib</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -563,7 +529,7 @@ iphone：正面向上的情况是">
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -572,11 +538,11 @@ iphone：正面向上的情况是">
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

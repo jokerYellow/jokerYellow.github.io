@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AFNetworking,HTTPS,SSL,单向认证," />
+  <meta name="keywords" content="AFNetworking,SSL,HTTPS,单向认证," />
 
 
 
@@ -94,25 +94,18 @@
 
 
 
-<meta name="description" content="以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。
-首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。+(SecIdentityRef)secIdentity{
-    static SecIdentityRef identity = NULL;
-    if (identity == nil)">
+<meta name="description" content="以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。 首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。+(SecIdentityRef)secIdentity{     static SecIdentityRef identity = NULL;     if (identity == nil)">
+<meta name="keywords" content="AFNetworking,SSL,HTTPS,单向认证">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AFNetworking SSL 单向认证（仅客户端）">
 <meta property="og:url" content="http://yoursite.com/2015/07/15/AFNetworking+SSL/index.html">
 <meta property="og:site_name" content="蜀道难">
-<meta property="og:description" content="以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。
-首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。+(SecIdentityRef)secIdentity{
-    static SecIdentityRef identity = NULL;
-    if (identity == nil)">
+<meta property="og:description" content="以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。 首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。+(SecIdentityRef)secIdentity{     static SecIdentityRef identity = NULL;     if (identity == nil)">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-07-24T14:28:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AFNetworking SSL 单向认证（仅客户端）">
-<meta name="twitter:description" content="以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。
-首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。+(SecIdentityRef)secIdentity{
-    static SecIdentityRef identity = NULL;
-    if (identity == nil)">
+<meta name="twitter:description" content="以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。 首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。+(SecIdentityRef)secIdentity{     static SecIdentityRef identity = NULL;     if (identity == nil)">
 
 
 
@@ -127,7 +120,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -166,7 +159,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -214,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首頁
+            Home
           </a>
         </li>
       
@@ -224,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            歸檔
+            Archives
           </a>
         </li>
       
@@ -234,7 +227,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            標籤
+            Tags
           </a>
         </li>
       
@@ -298,9 +291,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">發表於</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2015-07-15T20:57:56+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-15T20:57:56+08:00">
                 2015-07-15
               </time>
             
@@ -339,66 +332,74 @@
 
       
         <p>以下只针对服务器对客户端进行验证。目前只研究出一套鱼而不知渔，总之感觉这是玄学。希望对各位读者有所帮助。</p>
-<h1 id="首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX-p12。">首先把证书提取出来，得到<strong>SecIdentityRef</strong>对象供接下来使用。证书格式为：<strong>XXX.p12</strong>。</h1><pre><code>+(SecIdentityRef)secIdentity{
-    <span class="keyword">static</span> SecIdentityRef identity = <span class="literal">NULL</span>;
-    <span class="keyword">if</span> (identity == <span class="literal">nil</span>) {
-        SecTrustRef trust = <span class="literal">NULL</span>;
-        <span class="comment">//绑定证书，证书放在Resources文件夹中</span>
-        <span class="built_in">NSData</span> *PKCS12Data = [<span class="built_in">NSData</span> dataWithContentsOfFile:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:SSLCER ofType:<span class="string">@"p12"</span>]];<span class="comment">//证书文件名和文件类型</span>
-        [[<span class="keyword">self</span> class] extractIdentity:&amp;identity andTrust:&amp;trust fromPKCS12Data:PKCS12Data];
-        <span class="built_in">CFRelease</span>(trust);
+<h1 id="首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX-p12。"><a href="#首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX-p12。" class="headerlink" title="首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。"></a>首先把证书提取出来，得到<strong>SecIdentityRef</strong>对象供接下来使用。证书格式为：<strong>XXX.p12</strong>。</h1><pre><code>+(SecIdentityRef)secIdentity{
+    static SecIdentityRef identity = NULL;
+    if (identity == nil) {
+        SecTrustRef trust = NULL;
+        //绑定证书，证书放在Resources文件夹中
+        NSData *PKCS12Data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:SSLCER ofType:@&quot;p12&quot;]];//证书文件名和文件类型
+        [[self class] extractIdentity:&amp;identity andTrust:&amp;trust fromPKCS12Data:PKCS12Data];
+        CFRelease(trust);
     }
-    <span class="keyword">return</span> identity;
+    return identity;
 }
 
-+ (<span class="built_in">BOOL</span>)extractIdentity:(SecIdentityRef *)outIdentity andTrust:(SecTrustRef*)outTrust fromPKCS12Data:(<span class="built_in">NSData</span> *)inPKCS12Data {
++ (BOOL)extractIdentity:(SecIdentityRef *)outIdentity andTrust:(SecTrustRef*)outTrust fromPKCS12Data:(NSData *)inPKCS12Data {
 
     OSStatus securityError = errSecSuccess;
 
-    <span class="built_in">CFStringRef</span> password = <span class="built_in">CFSTR</span>(SSLPASSWORD); <span class="comment">//证书密码</span>
-    <span class="keyword">const</span> <span class="keyword">void</span> *keys[] =   { kSecImportExportPassphrase };
-    <span class="keyword">const</span> <span class="keyword">void</span> *values[] = { password };
+    CFStringRef password = CFSTR(SSLPASSWORD); //证书密码
+    const void *keys[] =   { kSecImportExportPassphrase };
+    const void *values[] = { password };
 
-    <span class="built_in">CFDictionaryRef</span> optionsDictionary = <span class="built_in">CFDictionaryCreate</span>(<span class="literal">NULL</span>, keys,values, <span class="number">1</span>,<span class="literal">NULL</span>, <span class="literal">NULL</span>);
+    CFDictionaryRef optionsDictionary = CFDictionaryCreate(NULL, keys,values, 1,NULL, NULL);
 
-    <span class="built_in">CFArrayRef</span> items = <span class="built_in">CFArrayCreate</span>(<span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="literal">NULL</span>);
-    <span class="comment">//securityError = SecPKCS12Import((CFDataRef)inPKCS12Data,(CFDictionaryRef)optionsDictionary,&amp;items);</span>
-    <span class="built_in">CFDataRef</span> dataref = (__bridge <span class="built_in">CFDataRef</span>)inPKCS12Data;
+    CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
+    //securityError = SecPKCS12Import((CFDataRef)inPKCS12Data,(CFDictionaryRef)optionsDictionary,&amp;items);
+    CFDataRef dataref = (__bridge CFDataRef)inPKCS12Data;
     securityError = SecPKCS12Import(dataref,optionsDictionary,&amp;items);
-    <span class="built_in">CFRelease</span>(optionsDictionary);
-    <span class="keyword">if</span> (securityError == <span class="number">0</span>) {
-        <span class="built_in">CFDictionaryRef</span> myIdentityAndTrust = <span class="built_in">CFArrayGetValueAtIndex</span> (items, <span class="number">0</span>);
-        <span class="keyword">const</span> <span class="keyword">void</span> *tempIdentity = <span class="literal">NULL</span>;
-        tempIdentity = <span class="built_in">CFDictionaryGetValue</span> (myIdentityAndTrust, kSecImportItemIdentity);
+    CFRelease(optionsDictionary);
+    if (securityError == 0) {
+        CFDictionaryRef myIdentityAndTrust = CFArrayGetValueAtIndex (items, 0);
+        const void *tempIdentity = NULL;
+        tempIdentity = CFDictionaryGetValue (myIdentityAndTrust, kSecImportItemIdentity);
         *outIdentity = (SecIdentityRef)tempIdentity;
-        <span class="keyword">const</span> <span class="keyword">void</span> *tempTrust = <span class="literal">NULL</span>;
-        tempTrust = <span class="built_in">CFDictionaryGetValue</span> (myIdentityAndTrust, kSecImportItemTrust);
+        const void *tempTrust = NULL;
+        tempTrust = CFDictionaryGetValue (myIdentityAndTrust, kSecImportItemTrust);
         *outTrust = (SecTrustRef)tempTrust;
 
-    } <span class="keyword">else</span> {
-        <span class="built_in">NSLog</span>(<span class="string">@"Failed with error code %d"</span>,(<span class="keyword">int</span>)securityError);
-        <span class="keyword">return</span> <span class="literal">NO</span>;
+    } else {
+        NSLog(@&quot;Failed with error code %d&quot;,(int)securityError);
+        return NO;
     }
-    <span class="keyword">return</span> <span class="literal">YES</span>;
+    return YES;
 }    
-</code></pre><h1 id="接下来需要重写AFNetworking的两个类的方法。">接下来需要重写AFNetworking的两个类的方法。</h1><h2 id="1-_文件AFURLConnectionOperation-m，此处是针对AFHTTPRequestOperationManager方式的请求。">1. 文件<strong>AFURLConnectionOperation.m</strong>，此处是针对<strong>AFHTTPRequestOperationManager</strong>方式的请求。</h2><pre><code>- (<span class="typename">void</span>)<span class="string">connection:</span>(NSURLConnection *)connection <span class="string">willSendRequestForAuthenticationChallenge:</span>(NSURLAuthenticationChallenge *)challenge
+</code></pre><h1 id="接下来需要重写AFNetworking的两个类的方法。"><a href="#接下来需要重写AFNetworking的两个类的方法。" class="headerlink" title="接下来需要重写AFNetworking的两个类的方法。"></a>接下来需要重写AFNetworking的两个类的方法。</h1><ol>
+<li>文件<strong>AFURLConnectionOperation.m</strong>，此处是针对<strong>AFHTTPRequestOperationManager</strong>方式的请求。</li>
+</ol>
+<hr>
+<pre><code>- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-    <span class="comment">//此处的[SSL_SecIdentity secIdentity] 既是上面所得到的SecIdentityRef对象 在下写了个类方法来获取</span>
-    NSURLCredential* credential = [[NSURLCredential alloc] <span class="string">initWithIdentity:</span>[SSL_SecIdentity secIdentity] <span class="string">certificates:</span>nil <span class="string">persistence:</span>NSURLCredentialPersistenceForSession];
-    [[challenge sender] <span class="string">useCredential:</span>credential <span class="string">forAuthenticationChallenge:</span>challenge]; 
+    //此处的[SSL_SecIdentity secIdentity] 既是上面所得到的SecIdentityRef对象 在下写了个类方法来获取
+    NSURLCredential* credential = [[NSURLCredential alloc] initWithIdentity:[SSL_SecIdentity secIdentity] certificates:nil persistence:NSURLCredentialPersistenceForSession];
+    [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge]; 
 }
-</code></pre><h2 id="2-_文件AFURLSessionManager-m，此处是针对AFHTTPSessionManager方式的请求。">2. 文件<strong>AFURLSessionManager.m</strong>，此处是针对<strong>AFHTTPSessionManager</strong>方式的请求。</h2><pre><code>- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session
-didReceiveChallenge:(<span class="built_in">NSURLAuthenticationChallenge</span> *)challenge
-completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">NSURLSessionAuthChallengeDisposition</span> disposition, <span class="built_in">NSURLCredential</span> *credential))completionHandler
+</code></pre><ol start="2">
+<li>文件<strong>AFURLSessionManager.m</strong>，此处是针对<strong>AFHTTPSessionManager</strong>方式的请求。</li>
+</ol>
+<hr>
+<pre><code>- (void)URLSession:(NSURLSession *)session
+didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
 {
-    <span class="built_in">NSURLSessionAuthChallengeDisposition</span> disposition = <span class="built_in">NSURLSessionAuthChallengeUseCredential</span>;
-    <span class="keyword">if</span> (completionHandler) {
-        <span class="comment">//此处的[SSL_SecIdentity secIdentity] 既是上面所得到的SecIdentityRef对象 在下写了个类方法来获取</span>
-        <span class="built_in">NSURLCredential</span>* credential = [[<span class="built_in">NSURLCredential</span> alloc] initWithIdentity:[SSL_SecIdentity secIdentity] certificates:<span class="literal">nil</span> persistence:<span class="built_in">NSURLCredentialPersistenceForSession</span>];
+    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengeUseCredential;
+    if (completionHandler) {
+        //此处的[SSL_SecIdentity secIdentity] 既是上面所得到的SecIdentityRef对象 在下写了个类方法来获取
+        NSURLCredential* credential = [[NSURLCredential alloc] initWithIdentity:[SSL_SecIdentity secIdentity] certificates:nil persistence:NSURLCredentialPersistenceForSession];
         completionHandler(disposition, credential);
     }
 }
-</code></pre><h1 id="经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。">经过以上设置以后，我便成功调用了<strong>https</strong>请求。由于只是单向，没有对服务器进行验证，所以没有对<strong>AFSecurityPolicy</strong>相关进行任何设置。本人对<strong>openssl</strong>这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。</h1>
+</code></pre><h1 id="经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。"><a href="#经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。" class="headerlink" title="经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。"></a>经过以上设置以后，我便成功调用了<strong>https</strong>请求。由于只是单向，没有对服务器进行验证，所以没有对<strong>AFSecurityPolicy</strong>相关进行任何设置。本人对<strong>openssl</strong>这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。</h1>
       
     </div>
     
@@ -417,9 +418,9 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
           
             <a href="/tags/AFNetworking/" rel="tag"># AFNetworking</a>
           
-            <a href="/tags/HTTPS/" rel="tag"># HTTPS</a>
-          
             <a href="/tags/SSL/" rel="tag"># SSL</a>
+          
+            <a href="/tags/HTTPS/" rel="tag"># HTTPS</a>
           
             <a href="/tags/单向认证/" rel="tag"># 单向认证</a>
           
@@ -433,6 +434,10 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/03/清平调/" rel="next" title="清平调">
+                <i class="fa fa-chevron-left"></i> 清平调
+              </a>
             
           </div>
 
@@ -496,10 +501,10 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Overview
           </li>
         </ul>
       
@@ -519,8 +524,8 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">文章</span>
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -531,7 +536,7 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">分類</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
@@ -542,7 +547,7 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">標籤</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -576,7 +581,7 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX-p12。"><span class="nav-number">1.</span> <span class="nav-text">首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接下来需要重写AFNetworking的两个类的方法。"><span class="nav-number">2.</span> <span class="nav-text">接下来需要重写AFNetworking的两个类的方法。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_文件AFURLConnectionOperation-m，此处是针对AFHTTPRequestOperationManager方式的请求。"><span class="nav-number">2.1.</span> <span class="nav-text">1. 文件AFURLConnectionOperation.m，此处是针对AFHTTPRequestOperationManager方式的请求。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_文件AFURLSessionManager-m，此处是针对AFHTTPSessionManager方式的请求。"><span class="nav-number">2.2.</span> <span class="nav-text">2. 文件AFURLSessionManager.m，此处是针对AFHTTPSessionManager方式的请求。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。"><span class="nav-number">3.</span> <span class="nav-text">经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX-p12。"><span class="nav-number">1.</span> <span class="nav-text">首先把证书提取出来，得到SecIdentityRef对象供接下来使用。证书格式为：XXX.p12。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接下来需要重写AFNetworking的两个类的方法。"><span class="nav-number">2.</span> <span class="nav-text">接下来需要重写AFNetworking的两个类的方法。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。"><span class="nav-number">3.</span> <span class="nav-text">经过以上设置以后，我便成功调用了https请求。由于只是单向，没有对服务器进行验证，所以没有对AFSecurityPolicy相关进行任何设置。本人对openssl这些东西一窍不通，所以仅贴出了自己鼓捣出的代码，供各位参考，也权当做了个笔记供以后参考。如有误导，请海涵。</span></a></li></ol></div>
             
 
           </div>
@@ -599,7 +604,7 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -608,11 +613,11 @@ completionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
