@@ -264,6 +264,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/rxSwift-learn-one/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李白白">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蜀道难">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/13/rxSwift-learn-one/" itemprop="url">响应式编程 与 RXSwift（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-13T20:55:22+08:00">
+                2019-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我想从 <strong>what</strong>、<strong>how</strong>、<strong>why</strong> 几个方面，简单的写一下如何用 <strong>RXSwift</strong> 写响应式代码。</p>
+<h1 id="what-is-RxSwift"><a href="#what-is-RxSwift" class="headerlink" title="what is RxSwift?"></a>what is RxSwift?</h1><p>在计算机中，<strong>响应式编程</strong>是一种面向<strong>数据流</strong>和<strong>变化传播</strong>的<strong>异步编程范式</strong>。<br>举个例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let <span class="selector-tag">a</span> = <span class="selector-tag">b</span> + c</span><br></pre></td></tr></table></figure>
+<p>在<strong>命令式编程</strong>中，这个表达式是计算 b 和 c 的和 a。假如之后 b 和 c 变化了，a 也不会变化。<br>而在<strong>响应式编程</strong>里，a 会随着 b 和 c 的变化而变化，不用再次执行这块代码求出一个值，再赋值给 a。<br>响应式编程可以简化交互式用户界面的开发，比如将视图与数据流绑定，数据流有新的值的时候，视图则会自动响应变化。<br><strong>ReactiveX</strong> 是一组提供异步的数据流的 api，在 <strong>ReactiveX</strong> 的眼中，一切都可以当作数据流，我们可以用它来轻松的开始响应式编程。<br>而 <strong>RxSwift</strong> 就是 <strong>ReactiveX</strong> 的 Swift 实现。</p>
+<h1 id="how-to-use-RxSwift？"><a href="#how-to-use-RxSwift？" class="headerlink" title="how to use RxSwift？"></a>how to use RxSwift？</h1><p>怎么用好 <strong>RxSwift</strong> 呢？使用 <strong>RxSwift</strong> 的关键，是如何转变思维，写出响应式代码。<br>举个例子，在登录页面，会对账号和密码的输入框做校验，账号限制为 11 位字符，密码限制为 6 到 20 个字符，只有在账号和密码都有效的情况下，登录按钮才可点击。</p>
+<h2 id="命令式编程"><a href="#命令式编程" class="headerlink" title="命令式编程"></a>命令式编程</h2><p><strong>在命令式编程下的典型思路是这样的 </strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>实现账号 TextField 以及密码 TextField 的 delegate 的字符串变化的方法，获取到他们的字符串</span><br><span class="line"><span class="bullet">2. </span>根据字符串的变化，设置登录按钮的enable状态</span><br></pre></td></tr></table></figure></p>
+<p>具体实现我就不写了，相信大家已经写了很多遍了</p>
+<h2 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h2><p><strong>在响应式编程下的典型思路是这样</strong><br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 获取账号和密码的字符流 <span class="keyword">user</span>NameInputStream、<span class="built_in">pass</span>WordInputStream</span><br><span class="line"><span class="number">2</span>. 将账号流转换为账号是否有效的流 <span class="keyword">user</span>NameValidStream、<span class="built_in">pass</span>WordValidStream</span><br><span class="line"><span class="number">3</span>. 将 <span class="keyword">user</span>NameValidStream、<span class="built_in">pass</span>WordValidStream 两个流合并为判断账号和密码是否有效的流 loginValidStream</span><br><span class="line"><span class="number">4</span>. 将 loginValidStream 与登录按钮绑定</span><br></pre></td></tr></table></figure></p>
+<p><strong>流程如图</strong><br><img src="http://ww1.sinaimg.cn/large/81d9def4ly1g2u7lmbk4lj21fy09cdhm.jpg" alt="登录按钮流"></p>
+<p><strong>show you the code</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> passWordField: <span class="type">UITextField</span>! </span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> userNameField: <span class="type">UITextField</span>! </span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> loginButton: <span class="type">UIButton</span>! </span><br><span class="line"><span class="keyword">let</span> bag = <span class="type">DisposeBag</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">bindView</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//生成流</span></span><br><span class="line">    <span class="keyword">let</span> passWordInput = <span class="keyword">self</span>.passWordField.rx.text</span><br><span class="line">    <span class="keyword">let</span> userNameInput = <span class="keyword">self</span>.userNameField.rx.text</span><br><span class="line">    <span class="comment">//转换流</span></span><br><span class="line">    <span class="keyword">let</span> passWordValid = passWordInput.<span class="built_in">map</span> &#123; (passWord) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> passWord = passWord&#123;</span><br><span class="line">            <span class="keyword">return</span> passWord.<span class="built_in">count</span> &gt; <span class="number">6</span> &amp;&amp; passWord.<span class="built_in">count</span> &lt; <span class="number">20</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> userNameValid = userNameInput.<span class="built_in">map</span> &#123; (userName) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> userName = userName &#123;</span><br><span class="line">            <span class="keyword">return</span> userName.<span class="built_in">count</span> == <span class="number">11</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//合并流</span></span><br><span class="line">    <span class="keyword">let</span> loginValid = <span class="type">Observable</span>&lt;<span class="type">Bool</span>&gt;.combineLatest(userNameValid, passWordValid) &#123; (userName, passWord) -&gt; <span class="type">Bool</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">return</span> userName &amp;&amp; passWord</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//绑定</span></span><br><span class="line">    loginValid.bind(to: <span class="keyword">self</span>.loginButton.rx.isEnabled).disposed(by: bag)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出这些代码主要在做的事情，就是流的生成、转换、合并，以及最后与 UI 的绑定。代码看起来也很直观，业务逻辑一目了然，减少了潜在性的错误。</p>
+<h1 id="why-RxSwift？"><a href="#why-RxSwift？" class="headerlink" title="why RxSwift？"></a>why RxSwift？</h1><p>RxSwift 是一个利器，使用它我们可以省去命令式编程下的很多胶水代码，通过流的转换合并，轻易的写出复杂的逻辑。<br>响应式编程的难点一个是学习曲线比较陡峭，一个是思维转换比较困难，踏过这两个坎之后，就会发现一个新世界了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/nginx-user-403/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1507,150 +1638,6 @@ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NS
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/03/清平调/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李白白">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蜀道难">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/07/03/清平调/" itemprop="url">清平调</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-03T21:51:34+08:00">
-                2015-07-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/诗文/" itemprop="url" rel="index">
-                    <span itemprop="name">诗文</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>云想衣裳花相容，春风拂槛露华浓。<br>若非群玉山头见，会向瑶台月下逢。</p>
-<p>一枝秾艳露凝香，云雨巫山枉断肠。<br>借问汉宫谁得似，可怜飞燕倚新妆。</p>
-<p>名花倾国两相欢，长得君王带笑看。<br>解释春风无限恨，沉香亭北倚阑干。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1701,7 +1688,7 @@ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NS
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
