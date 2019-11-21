@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="#rule 1  Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all inte">
+<meta name="description" content="rule 1 Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all intern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习 RxSwift">
 <meta property="og:url" content="http://yoursite.com/2018/01/23/learningrxswift/index.html">
-<meta property="og:site_name" content="蜀道难">
-<meta property="og:description" content="#rule 1  Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all inte">
+<meta property="og:site_name" content="pipasese的博客">
+<meta property="og:description" content="rule 1 Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all intern">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-07T04:01:23.004Z">
+<meta property="og:updated_time" content="2019-11-21T12:52:03.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习 RxSwift">
-<meta name="twitter:description" content="#rule 1  Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all inte">
+<meta name="twitter:description" content="rule 1 Sequences can have 0 or more elements. Once an error or completed event is received, the sequence cannot produce any other element. When a sequence sends the completed or error event all intern">
 
 
 
@@ -140,7 +140,7 @@
 
 <link rel="apple-touch-icon" href="/images/logo_icon.jpg">
 
-  <title>学习 RxSwift | 蜀道难</title>
+  <title>学习 RxSwift | pipasese的博客</title>
   
 
 
@@ -176,7 +176,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">蜀道难</span>
+        <span class="site-title">pipasese的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -266,13 +266,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/learningrxswift/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李白白">
+      <meta itemprop="name" content="pipasese">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蜀道难">
+      <meta itemprop="name" content="pipasese的博客">
     </span>
 
     
@@ -330,22 +330,20 @@
       
 
       
-        <p>#rule 1</p>
-<ul>
+        <h1 id="rule-1"><a href="#rule-1" class="headerlink" title="rule 1"></a>rule 1</h1><ul>
 <li>Sequences can have 0 or more elements.</li>
 <li>Once an error or completed event is received, the sequence cannot produce any other element.</li>
 <li>When a sequence sends the completed or error event all internal resources that compute sequence elements will be freed.</li>
 <li>To cancel production of sequence elements and free resources immediately, call dispose on the returned subscription.</li>
 </ul>
-<p>#rule 2</p>
-<ul>
+<h1 id="rule-2"><a href="#rule-2" class="headerlink" title="rule 2"></a>rule 2</h1><ul>
 <li>onNext 没结束之前，onComplete、onError、onNext都不会开始执行</li>
 <li>dispose被释放之后，其相关的订阅都会执行dispose</li>
 <li>Observerable，subscribe是同步的</li>
 <li>可被订阅者，被订阅者，可被订阅，之后发布消息</li>
 <li>订阅者，订阅者发布消息</li>
 </ul>
-<p>#other<br>现在只是用熟练了绑定，监听。</p>
+<h1 id="other"><a href="#other" class="headerlink" title="other"></a>other</h1><p>现在只是用熟练了绑定，监听。</p>
 
       
     </div>
@@ -434,13 +432,22 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李白白">
-          <p class="site-author-name" itemprop="name">李白白</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="pipasese">
+          <p class="site-author-name" itemprop="name">pipasese</p>
            
-              <p class="site-description motion-element" itemprop="description">蜀道之难，难于上青天</p>
+              <p class="site-description motion-element" itemprop="description">一些记录</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -448,7 +455,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -496,6 +503,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rule-1"><span class="nav-number">1.</span> <span class="nav-text">rule 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rule-2"><span class="nav-number">2.</span> <span class="nav-text">rule 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#other"><span class="nav-number">3.</span> <span class="nav-text">other</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -516,7 +539,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">李白白</span>
+  <span class="author" itemprop="copyrightHolder">pipasese</span>
 </div>
 
 
