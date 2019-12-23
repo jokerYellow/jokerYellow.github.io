@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="utf-8,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="问题  11100110 10110001 10011111表示什么？  0x00 ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见的如">
+<meta name="keywords" content="utf-8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UTF-8 字符编码">
+<meta property="og:url" content="http://yoursite.com/2019/12/23/what-is-utf8/index.html">
+<meta property="og:site_name" content="pipasese的博客">
+<meta property="og:description" content="问题  11100110 10110001 10011111表示什么？  0x00 ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见的如">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-23T13:17:33.860Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UTF-8 字符编码">
+<meta name="twitter:description" content="问题  11100110 10110001 10011111表示什么？  0x00 ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见的如">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/23/what-is-utf8/">
+
+
+
+
+<link rel="apple-touch-icon" href="/images/logo_icon.jpg">
+
+  <title>UTF-8 字符编码 | pipasese的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pipasese的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜀道之难，难于上青天</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/23/what-is-utf8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pipasese">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pipasese的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UTF-8 字符编码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-23T21:16:59+08:00">
+                2019-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>问题</p>
+<blockquote>
+<p><code>11100110 10110001 10011111</code>表示什么？</p>
+</blockquote>
+<h4 id="0x00-ASCII"><a href="#0x00-ASCII" class="headerlink" title="0x00 ASCII"></a><code>0x00</code> ASCII</h4><blockquote>
+<p>American Standard Code for Information Interchange，美国信息交换标准代码 </p>
+</blockquote>
+<p><code>ASCII</code>最初由美国提出，解决了英语世界在计算机里的编码问题。<br><code>ASCII</code>从<code>00</code>开始，一直到<code>7f</code>，包含了<code>128</code>个字符，其中<code>33</code>个控制字符，<code>95</code>个可见字符。</p>
+<ol>
+<li>控制字符比较常见的如换行键、空字符、退出键等。</li>
+<li>可见字符如空格、数字、大小写字母、符号等。</li>
+</ol>
+<p>可以通过<code>echo</code>配合<code>xxd</code>命令很简单的获取字符的ASCII值，如下我们就拿到了a的ascII值为0x61<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> a | xxd</span></span><br><span class="line">00000000: 610a                          a.</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> a | xxd -b                     </span></span><br><span class="line">00000000: 01100001 00001010              a.</span><br></pre></td></tr></table></figure></p>
+<p>随着互联网在全世界的普及，<code>ASCII</code>的局限性慢慢凸显，其无法表示其他语种如汉语、日语的字符。于是发展出了<code>Unicode</code>。</p>
+<h4 id="0x01-Unicode"><a href="#0x01-Unicode" class="headerlink" title="0x01 Unicode"></a><code>0x01</code> Unicode</h4><blockquote>
+<p>Unicode，又称为万国码、国际码、统一码、单一码</p>
+</blockquote>
+<p>Unicode是一项业界标准，为每一个字符都唯一了的编码，统一了各语种的编码。<br>比如<code>U+0061</code>表示<code>a</code>，<code>U+660e</code>代表汉字的<code>明</code>字，<code>U+1f600</code>表示<code>露齿而笑的脸😀</code>,<code>U+1F1F3</code>表示<code>中国国旗🇨🇳</code></p>
+<p>Unicode里一个字型可以代表多种字符编码，甚至是某些编码的组合。<br>如<code>é</code>既可以用<code>U+00e9</code>表示，也可以用<code>U+0065U+0301</code>的组合表示。所以我们使用的时候，还是得根据实际使用的意义来输入，否则在计算长度以及字符串比较等方面就会不一致，造成不必要的麻烦，而且这些问题排查起来也很困难。</p>
+<h4 id="0x02-UTF-8"><a href="#0x02-UTF-8" class="headerlink" title="0x02 UTF-8"></a><code>0x02</code> UTF-8</h4><blockquote>
+<p>8-bit Unicode Transformation Format</p>
+</blockquote>
+<p><code>UTF-8</code>是一种针对Unicode的可变长度字符编码，也是一种前缀码。</p>
+<ol>
+<li><code>128</code>个<code>US-ASCII</code>字符只需一个字节编码（<code>Unicode</code>范围由<code>U+0000</code>至<code>U+007F</code>）</li>
+<li>带有附加符号的拉丁文、希腊文、西里尔字母、亚美尼亚语、希伯来文、阿拉伯文、叙利亚文及它拿字母则需要两个字节编码（<code>Unicode</code>范围由<code>U+0080</code>至<code>U+07FF</code>）</li>
+<li>其他基本多文种平面（<code>BMP</code>）中的字符（这包含了大部分常用字，如大部分的汉字）使用三个字节编码（<code>Unicode</code>范围由<code>U+0800</code>至<code>U+FFFF</code>）</li>
+<li>其他极少使用的<code>Unicode</code>辅助平面的字符使用四至六字节编码（<code>Unicode</code>范围由<code>U+10000</code>至<code>U+1FFFFF</code>使用四字节，<code>Unicode</code>范围由<code>U+200000</code>至<code>U+3FFFFFF</code>使用五字节，<code>Unicode</code>范围由<code>U+4000000</code>至<code>U+7FFFFFFF</code>使用六字节）。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>代码范围</th>
+<th>标量值</th>
+<th>UTF-8</th>
+<th>注释</th>
+<th>个数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000000 - 00007f</td>
+<td>00000000 00000000 0zzzzzzz</td>
+<td>00-f7</td>
+<td>ASCII，字节由0开始</td>
+<td>128</td>
+</tr>
+<tr>
+<td>000080 - 0007ff</td>
+<td>00000000 00000yyy yyzzzzzz</td>
+<td>110yyyyy 10zzzzzz</td>
+<td>第一个字节由110开始，接着的字节由10开始</td>
+<td>1920</td>
+</tr>
+<tr>
+<td>000800 - 00d7ff , 00e000 - 00ffff</td>
+<td>00000000 xxxxyyyy yyzzzzzz</td>
+<td>1110xxxx 10yyyyyy 10zzzzzz</td>
+<td>第一个字节由1110开始，接着的字节由10开始</td>
+<td>61440</td>
+</tr>
+<tr>
+<td>010000 - 10ffff</td>
+<td>000wwwxx xxxxyyyy yyzzzzzz</td>
+<td>11110www 10xxxxxx 10yyyyyy 10zzzzzz</td>
+<td>第一个字节由11110开始，接着的字节由10开始</td>
+<td>1048576</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>Unicode</code>在范围<code>D800-DFFF</code>中不存在任何字符，基本多文种平面中约定了这个范围用于<code>UTF-16</code>扩展标识辅助平面（两个<code>UTF-16</code>表示一个辅助平面字符）。当然，任何编码都是可以被转换到这个范围，但在<code>Unicode</code>中他们并不代表任何合法的值。</p>
+</blockquote>
+<p>根据上面的表可见</p>
+<ol>
+<li><code>UTF-8</code>完美兼容<code>ASCII</code>编码</li>
+<li>编码下可表示的<code>Unicode</code>字符数量很大，而且是可以继续扩展的</li>
+</ol>
+<p>同时我们可以根据<code>Unicode</code>值推导出<code>UTF-8</code>的编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Unicode:黄,U+9ec4] --&gt;|二进制| B(1001 1110 1100 0100)</span><br><span class="line">B --&gt; |UTF-8| C(11101001 10111011 10000100)</span><br><span class="line">C --&gt; |十六进制| D(UTF-8:e9bb84)</span><br></pre></td></tr></table></figure></p>
+<p>也可以回到文章开头的问题，根据<code>UTF-8</code>的值，推导出<code>Unicode</code>字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD </span><br><span class="line">B(11100110  10110001 10011111) --&gt; |Unicode| C(0110 1100 0101 1111)</span><br><span class="line">C --&gt; |十六进制| D(Unicode:江,U+6c5f)</span><br></pre></td></tr></table></figure></p>
+<h4 id="0x03-应用之阅读以及修改机器码"><a href="#0x03-应用之阅读以及修改机器码" class="headerlink" title="0x03 应用之阅读以及修改机器码"></a><code>0x03</code> 应用之阅读以及修改机器码</h4><p>学以致用，这样效果才会好<br>这是一段简单的输出字符串的程序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello,world!黄"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译<br><code>$ gcc main.c | ./a.out</code><br>输出：<code>hello,world!黄</code></p>
+<p>查看目标文件的段信息<br><code>$ objdump -s a.out</code><br>输出里的字符段如下：<br><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of <span class="keyword">section</span> __cstring:</span><br><span class="line"> <span class="number">100000</span>fa<span class="number">2</span> <span class="number">68656</span><span class="keyword">c</span><span class="number">6</span><span class="keyword">c</span> <span class="number">6</span>f<span class="number">2</span><span class="keyword">c</span><span class="number">776</span>f <span class="number">726</span><span class="keyword">c</span><span class="number">6521</span> e<span class="number">9</span>bb<span class="number">8400</span>  hello,world<span class="title">!....</span></span><br></pre></td></tr></table></figure></p>
+<p>我们可以很了然的知道，这一串十六进制编码代表了UTF-8编码的<code>hello,world!黄</code>。甚至可以直接通过<code>vim</code>的<code>xxd</code>格式进行修改<br><code>vim -b a.out</code><br>打开十六进制模式<br><code>%!xxd</code><br>查找到hello部分进行修改<br><code>/hello</code><br>恢复成二进制模式<br><code>%!xxd -r</code><br>保存退出<br><code>wq!</code></p>
+<p>查看字符段<br><code>$ objdump -s a.out</code><br>输出：<br><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of <span class="keyword">section</span> __cstring:</span><br><span class="line"> <span class="number">100000</span>fa<span class="number">2</span> <span class="number">68656</span><span class="keyword">c</span><span class="number">6</span><span class="keyword">c</span> <span class="number">6</span>f<span class="number">2</span><span class="keyword">c</span><span class="number">776</span>f <span class="number">726</span><span class="keyword">c</span><span class="number">6521</span> e<span class="number">9</span>bb<span class="number">8400</span>  hello,world<span class="title">!....</span></span><br></pre></td></tr></table></figure></p>
+<p><code>$ ./a.out</code><br>输出：<code>hello,world!江</code><br>这样，我们就修改了机器码。</p>
+<p>同时，笔者也想通了一些问题，比如<code>hardCode</code>进代码里的密钥肯定是不安全的，<code>iOS</code>的代码签名也是为了保证程序不被篡改。</p>
+<h6 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h6><ul>
+<li>ascii：<a href="https://zh.wikipedia.org/wiki/ASCII" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/ASCII</a></li>
+<li>unicode：<a href="https://home.unicode.org/" target="_blank" rel="noopener">https://home.unicode.org/</a></li>
+<li>emoji：<a href="http://unicode.org/emoji/charts/full-emoji-list.html" target="_blank" rel="noopener">http://unicode.org/emoji/charts/full-emoji-list.html</a></li>
+<li>汉字对应的unicode：<a href="http://www.chi2ko.com/tool/CJK.htm" target="_blank" rel="noopener">http://www.chi2ko.com/tool/CJK.htm</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/utf-8/" rel="tag"># utf-8</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/13/rxSwift-learn-one/" rel="next" title="响应式编程 与 RXSwift（一）">
+                <i class="fa fa-chevron-left"></i> 响应式编程 与 RXSwift（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="pipasese">
+          <p class="site-author-name" itemprop="name">pipasese</p>
+           
+              <p class="site-description motion-element" itemprop="description">一些记录</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x00-ASCII"><span class="nav-number">1.</span> <span class="nav-text">0x00 ASCII</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01-Unicode"><span class="nav-number">2.</span> <span class="nav-text">0x01 Unicode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-UTF-8"><span class="nav-number">3.</span> <span class="nav-text">0x02 UTF-8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-应用之阅读以及修改机器码"><span class="nav-number">4.</span> <span class="nav-text">0x03 应用之阅读以及修改机器码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参考链接："><span class="nav-number">4.0.1.</span> <span class="nav-text">参考链接：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pipasese</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
