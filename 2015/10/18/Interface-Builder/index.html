@@ -5,11 +5,11 @@
   
 
 
-<html class="theme-next mist use-motion" lang>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<html class="theme-next mist use-motion" lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -39,7 +39,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -73,21 +73,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="iOS,">
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="iOS," />
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -95,17 +95,17 @@
 
 
 <meta name="description" content="这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。  size class 分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做 一般情况下都是 wA+hA 情况 iphone：正面向上的情况是 w">
-<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Interface Builder">
 <meta property="og:url" content="http://yoursite.com/2015/10/18/Interface-Builder/index.html">
 <meta property="og:site_name" content="pipasese的博客">
 <meta property="og:description" content="这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。  size class 分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做 一般情况下都是 wA+hA 情况 iphone：正面向上的情况是 w">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-21T12:58:22.975Z">
+<meta property="og:locale" content="zh">
+<meta property="article:published_time" content="2015-10-18T13:32:49.000Z">
+<meta property="article:modified_time" content="2019-11-21T12:58:22.975Z">
+<meta property="article:author" content="pipasese">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Interface Builder">
-<meta name="twitter:description" content="这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，准备在项目里尝试用一下nib这一块。  size class 分为C（紧凑） A（任意） R（正常） 三种，假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做 一般情况下都是 wA+hA 情况 iphone：正面向上的情况是 w">
 
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/10/18/Interface-Builder/">
+  <link rel="canonical" href="http://yoursite.com/2015/10/18/Interface-Builder/"/>
 
 
 
@@ -157,9 +157,9 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
 
   
   
@@ -175,7 +175,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">pipasese的博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -205,7 +205,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -215,7 +215,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -225,7 +225,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -268,7 +268,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -381,7 +381,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/03/清平调/" rel="next" title="清平调">
+              <a href="/2015/07/03/%E6%B8%85%E5%B9%B3%E8%B0%83/" rel="next" title="清平调">
                 <i class="fa fa-chevron-left"></i> 清平调
               </a>
             
@@ -446,7 +446,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -457,7 +457,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="pipasese">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pipasese" />
           <p class="site-author-name" itemprop="name">pipasese</p>
            
               <p class="site-description motion-element" itemprop="description">一些记录</p>
@@ -545,7 +547,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
@@ -557,16 +559,24 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
 </div>
 
 <div class="theme-info">
   Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>
 
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
 
         
 
