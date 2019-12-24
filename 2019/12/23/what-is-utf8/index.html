@@ -288,21 +288,13 @@
 <blockquote>
 <p><code>Unicode</code>在范围<code>D800-DFFF</code>中不存在任何字符，基本多文种平面中约定了这个范围用于<code>UTF-16</code>扩展标识辅助平面（两个<code>UTF-16</code>表示一个辅助平面字符）。当然，任何编码都是可以被转换到这个范围，但在<code>Unicode</code>中他们并不代表任何合法的值。</p>
 </blockquote>
-<p>根据上面的表可见，<code>UTF-8</code>完美兼容<code>ASCII</code>编码，<code>Unicode</code>范围很大，而且是可以继续扩展的<br>同时我们可以根据<code>Unicode</code>值推导出<code>UTF-8</code>的编码 </p>
-<pre class="mermaid">graph TD
-A[Unicode:黄,U+9ec4] -->|二进制| B(1001 1110 1100 0100)
-B --> |UTF-8| C(11101001 10111011 10000100)
-C --> |十六进制| D(UTF-8:e9bb84)</pre>
-
+<p>根据上面的表可见，<code>UTF-8</code>完美兼容<code>ASCII</code>编码，<code>Unicode</code>范围很大，而且是可以继续扩展的<br>同时我们可以根据<code>Unicode</code>值推导出<code>UTF-8</code>的编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[Unicode:黄,U+9ec4] --&gt;|二进制| B(1001 1110 1100 0100)</span><br><span class="line">B --&gt; |UTF-8| C(11101001 10111011 10000100)</span><br><span class="line">C --&gt; |十六进制| D(UTF-8:e9bb84)</span><br></pre></td></tr></table></figure></p>
 <p>现在我们回到文章开头的问题</p>
 <blockquote>
 <p><code>11100110 10110001 10011111</code>表示什么？</p>
 </blockquote>
 <p>可以看出这段二进制编码实际上是<code>UTF-8</code>编码，按照上表的规则，可以推导出其<code>Unicode</code>字符</p>
-<pre class="mermaid">graph TD 
-B(11100110  10110001 10011111) --> |Unicode| C(0110 1100 0101 1111)
-C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD </span><br><span class="line">B(11100110  10110001 10011111) --&gt; |Unicode| C(0110 1100 0101 1111)</span><br><span class="line">C --&gt; |十六进制| D(Unicode:江,U+6c5f)</span><br></pre></td></tr></table></figure>
 <h4 id="0x03-应用之阅读以及修改机器码字符段"><a href="#0x03-应用之阅读以及修改机器码字符段" class="headerlink" title="0x03 应用之阅读以及修改机器码字符段"></a><code>0x03</code> 应用之阅读以及修改机器码字符段</h4><p>学以致用，这样效果才会好<br>这是一段简单的输出字符串的程序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello,world!黄"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>编译<br><code>$ gcc main.c | ./a.out</code><br>输出：<code>hello,world!黄</code></p>
 <p>查看目标文件的段信息<br><code>$ objdump -s a.out</code><br>输出里的字符段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure><br>我们可以很了然的知道，这一串十六进制编码代表了UTF-8编码的<code>hello,world!黄</code>。甚至可以直接通过<code>vim</code>的<code>xxd</code>格式进行修改<br><code>vim -b a.out</code><br>打开十六进制模式<br><code>%!xxd</code><br>查找到hello部分进行修改<br><code>/hello</code><br>恢复成二进制模式<br><code>%!xxd -r</code><br>保存退出<br><code>wq!</code><br>查看字符段<br><code>$ objdump -s a.out</code><br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure></p>
 <p><code>$ ./a.out</code><br>输出：<code>hello,world!江</code><br>这样，我们就修改了机器码。</p>
