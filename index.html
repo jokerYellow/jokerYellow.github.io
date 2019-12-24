@@ -1,144 +1,74 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="一些记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="pipasese的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="pipasese的博客">
-<meta property="og:description" content="一些记录">
-<meta property="og:locale" content="zh">
-<meta property="article:author" content="pipasese">
-<meta name="twitter:card" content="summary">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
+  <meta name="description" content="一些记录">
+<meta property="og:type" content="website">
+<meta property="og:title" content="木鱼的博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="木鱼的博客">
+<meta property="og:description" content="一些记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="木鱼">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/">
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
 
-
-
-
-<link rel="apple-touch-icon" href="/images/logo_icon.jpg">
-
-  <title>pipasese的博客</title>
+  <title>木鱼的博客</title>
   
 
 
@@ -146,182 +76,136 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
+</head>
 
-
-
-
-
-<meta name="generator" content="Hexo 4.2.0"></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+    <div>
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">pipasese的博客</span>
+        <span class="site-title">木鱼的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
         <p class="site-subtitle">蜀道之难，难于上青天</p>
-      
   </div>
 
   <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <div class="posts-expand">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/23/what-is-utf8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/23/what-is-utf8/" itemprop="url">UTF-8 字符编码</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/23/what-is-utf8/" class="post-title-link" itemprop="url">UTF-8 字符编码</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-23T21:16:59+08:00">
-                2019-12-23
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2019-12-23 21:16:59" itemprop="dateCreated datePublished" datetime="2019-12-23T21:16:59+08:00">2019-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-24 19:17:40" itemprop="dateModified" datetime="2019-12-24T19:17:40+08:00">2019-12-24</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -329,12 +213,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>问题  </p>
+          <p>问题  </p>
 <blockquote>
 <p><code>11100110 10110001 10011111</code>表示什么？</p>
 </blockquote>
@@ -433,112 +312,62 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
 <li>汉字对应的unicode：<a href="http://www.chi2ko.com/tool/CJK.htm" target="_blank" rel="noopener">http://www.chi2ko.com/tool/CJK.htm</a></li>
 </ul>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/rxSwift-learn-one/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/13/rxSwift-learn-one/" itemprop="url">响应式编程 与 RXSwift（一）</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/13/rxSwift-learn-one/" class="post-title-link" itemprop="url">响应式编程 与 RXSwift（一）</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-13T20:55:22+08:00">
-                2019-05-13
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2019-05-13 20:55:22" itemprop="dateCreated datePublished" datetime="2019-05-13T20:55:22+08:00">2019-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-24 19:17:40" itemprop="dateModified" datetime="2019-12-24T19:17:40+08:00">2019-12-24</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -546,12 +375,7 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>我想从 <strong>what</strong>、<strong>how</strong>、<strong>why</strong> 几个方面，简单的写一下如何用 <strong>RXSwift</strong> 写响应式代码。</p>
+          <p>我想从 <strong>what</strong>、<strong>how</strong>、<strong>why</strong> 几个方面，简单的写一下如何用 <strong>RXSwift</strong> 写响应式代码。</p>
 <h1 id="what-is-RxSwift"><a href="#what-is-RxSwift" class="headerlink" title="what is RxSwift?"></a>what is RxSwift?</h1><p>在计算机中，<strong>响应式编程</strong>是一种面向<strong>数据流</strong>和<strong>变化传播</strong>的<strong>异步编程范式</strong>。<br>举个例子：</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">a</span> = b + c</span><br></pre></td></tr></table></figure>
 <p>在<strong>命令式编程</strong>中，这个表达式是计算 b 和 c 的和 a。假如之后 b 和 c 变化了，a 也不会变化。<br>而在<strong>响应式编程</strong>里，a 会随着 b 和 c 的变化而变化，不用再次执行这块代码求出一个值，再赋值给 a。<br>响应式编程可以简化交互式用户界面的开发，比如将视图与数据流绑定，数据流有新的值的时候，视图则会自动响应变化。<br><strong>ReactiveX</strong> 是一组提供异步的数据流的 api，在 <strong>ReactiveX</strong> 的眼中，一切都可以当作数据流，我们可以用它来轻松的开始响应式编程。<br>而 <strong>RxSwift</strong> 就是 <strong>ReactiveX</strong> 的 Swift 实现。</p>
@@ -562,112 +386,56 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
 <p>可以看出这些代码主要在做的事情，就是流的生成、转换、合并，以及最后与 UI 的绑定。代码看起来也很直观，业务逻辑一目了然，减少了潜在性的错误。</p>
 <h1 id="why-RxSwift？"><a href="#why-RxSwift？" class="headerlink" title="why RxSwift？"></a>why RxSwift？</h1><p>RxSwift 是一个利器，而且它的扩展库 RxCocoa 将 UIKit 里的大部分 UI 控件做了 Reactive 化，可以很方便的对控件进行数据绑定，以及监控控件的变化。使用 RxSwift 我们可以省去命令式编程下的很多胶水代码，通过流的转换合并，轻易的写出复杂的逻辑。<br>响应式编程的难点一个是学习曲线比较陡峭，一个是思维转换比较困难，踏过这两个坎之后，就会发现一个新世界了。</p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/nginx-user-403/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/22/nginx-user-403/" itemprop="url">NGINX 用户权限引起的 403 问题</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/22/nginx-user-403/" class="post-title-link" itemprop="url">NGINX 用户权限引起的 403 问题</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">发表于</span>
               
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-22T20:23:20+08:00">
-                2019-04-22
-              </time>
-            
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2019-04-22 20:23:20 / 修改时间：21:11:23" itemprop="dateCreated datePublished" datetime="2019-04-22T20:23:20+08:00">2019-04-22</time>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -675,12 +443,7 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在 CentOS 上安装完 NGINX 之后，尝试修改 NGINX 的 root 地址</p>
+          <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在 CentOS 上安装完 NGINX 之后，尝试修改 NGINX 的 root 地址</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span><br><span class="line">http&#123;</span><br><span class="line">    server&#123;</span><br><span class="line">        root <span class="string">/root/blog</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
 <p>在 root 用户下，新建文件夹 blog 如下</p>
 <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">-root</span></span><br><span class="line"><span class="ruby">    --blog</span></span><br><span class="line"><span class="ruby">        index.html</span></span><br></pre></td></tr></table></figure>
@@ -702,112 +465,62 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">    server&#123;</span><br><span class="line"><span class="symbol">        root:</span><span class="meta-keyword">/home/</span>www/blog;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样，就能正常访问 root 主页了</p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/2018summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/09/2018summary/" itemprop="url">2018流水账</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/09/2018summary/" class="post-title-link" itemprop="url">2018流水账</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T19:01:44+08:00">
-                2019-01-09
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2019-01-09 19:01:44" itemprop="dateCreated datePublished" datetime="2019-01-09T19:01:44+08:00">2019-01-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-02-04 21:42:14" itemprop="dateModified" datetime="2019-02-04T21:42:14+08:00">2019-02-04</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -815,12 +528,7 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>思来想去，还是要对 2018 年做个记录。</p>
+          <p>思来想去，还是要对 2018 年做个记录。</p>
 <h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>在今年的十月六号，在老家举办了婚礼，跟对象走进了婚姻的殿堂。<br>感谢我的妻子的理解，以及对我的包容。<br>从此以后，我的人生之路，有了贤妻陪伴，特别好。<br>还有一件事情就是开始还房贷了，每个月五千的房贷，三千的装修贷，两千的房租。<br>人的一生呐还是要靠自己的奋斗，要是在 2017 年，我是不敢想象我能扛起来的。<br>2019 年 9 月交房。</p>
 <h1 id="旅游"><a href="#旅游" class="headerlink" title="旅游"></a>旅游</h1><p>跟老婆一起去了趟美丽的开远参加昂然兄的婚礼，多年未见的大学同学聚了聚。<br>吃了米线、卷粉、烧烤、烧豆腐、竹荪山药鸡，非常感谢昂然兄的款待，云南的吃，特别好。<br>顺道去了普者黑，普者黑的水，特别好。<br>倒是没有去云大看看，有点遗憾。</p>
 <h1 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h1><p>血源很合我的胃口，玩通了一周目，虽然虐的我不要不要的，但是那种痛快的杀戮感，特别好。<br>入了怪物猎人，玩不下去，还是喜欢魂系列。<br>还有 Diablo3，玩了下 NEC，最近开始玩 DH，真香。<br>下载了很多其他游戏，都没时间或者精力去玩了。</p>
@@ -836,112 +544,62 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
 <h1 id="Flag"><a href="#Flag" class="headerlink" title="Flag"></a>Flag</h1><p>根据以往的经验，flag 仅仅是 flag，但是我觉得还是要说一下，立足长远来看。<br>三年的 flag 是不上班。<br>一年的 flag 是开一家淘宝店并且运营起来。<br>这个一年的 flag 是三年 flag 的一个具体实现途径。</p>
 <p><em>以上，2018年大年三十晚。</em></p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/learningrxswift/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/23/learningrxswift/" itemprop="url">学习 RxSwift</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/23/learningrxswift/" class="post-title-link" itemprop="url">学习 RxSwift</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T19:58:38+08:00">
-                2018-01-23
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2018-01-23 19:58:38" itemprop="dateCreated datePublished" datetime="2018-01-23T19:58:38+08:00">2018-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 20:52:03" itemprop="dateModified" datetime="2019-11-21T20:52:03+08:00">2019-11-21</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -949,12 +607,7 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h1 id="rule-1"><a href="#rule-1" class="headerlink" title="rule 1"></a>rule 1</h1><ul>
+          <h1 id="rule-1"><a href="#rule-1" class="headerlink" title="rule 1"></a>rule 1</h1><ul>
 <li>Sequences can have 0 or more elements.</li>
 <li>Once an error or completed event is received, the sequence cannot produce any other element.</li>
 <li>When a sequence sends the completed or error event all internal resources that compute sequence elements will be freed.</li>
@@ -969,112 +622,62 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
 </ul>
 <h1 id="other"><a href="#other" class="headerlink" title="other"></a>other</h1><p>现在只是用熟练了绑定，监听。</p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/15/2017summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/15/2017summary/" itemprop="url">一个总结</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/15/2017summary/" class="post-title-link" itemprop="url">一个总结</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-15T22:34:39+08:00">
-                2018-01-15
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2018-01-15 22:34:39" itemprop="dateCreated datePublished" datetime="2018-01-15T22:34:39+08:00">2018-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-01-22 00:07:08" itemprop="dateModified" datetime="2018-01-22T00:07:08+08:00">2018-01-22</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1082,12 +685,7 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>一八年已经过去了百分之四，之前没有做过什么总结，不过去年确实值得说道说道。</p>
+          <p>一八年已经过去了百分之四，之前没有做过什么总结，不过去年确实值得说道说道。</p>
 <p>我本打算年初的时候回武汉，但二月份的时候恋爱了，就是这么猝不及防。由于对象在无锡，我选择暂时不回武汉，继续在上海待着。</p>
 <p>期间就是恋爱工作看书了。一直到下半年，跟女朋友达成回乡的共识，于是着手实施回武汉。由于工作原因，需要帮公司招个人，以及做一下工作交接，从原定的九月份，一直到十月份才终于算是完成任务。招人挺难的，主要是看缘分。最后招了一位当时从武汉来上海找工作的小伙子，虽然期间发生了一些意外，所幸最后还是顺利入职了。写到这里不禁要感慨下几年前自己背着个包来到上海，脑袋里空空如也，能走到现在这般，真是幸运。</p>
 <p>十月国庆假期过后，武汉出台了<a href="http://www.wuhan.gov.cn/whszfwz/xwxx/whyw/201710/t20171016_139167.html" target="_blank" rel="noopener">大学生落户政策</a>，大学生可以无门槛购房了。</p>
@@ -1097,112 +695,62 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
 <p>其实回武汉的时候我是怀着一种苦大仇深的情绪的，因为印象中武汉的互联网环境真的不乐观，算是跟外面漂泊的自己和解了，有一种妥协的成分在里面。回来之后，很幸运的加入了现在非常棒的团队。武汉这几年招商引资，很多一线公司都来投资建厂，不得不说环境确实是变好了。个人的发展真的是跟历史的大进程息息相关呐，感谢武汉，感谢互联网时代。</p>
 <p>好像没有说以后的事。最近写一些基础设施项目，有一些感悟。我觉得把大的方向定下来了，局部模块都是一个渐渐优化、渐渐积累的过程。比如这篇总结，我也是先搭个架子，优化了好多个版本，算是写出来了。生活也是一样，我也是满怀希望，相信未来的。扛着这么大的担子，真的只有继续努力了。</p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/20/multithreading/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/20/multithreading/" itemprop="url">闲话iOS多线程</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/02/20/multithreading/" class="post-title-link" itemprop="url">闲话iOS多线程</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-20T22:10:57+08:00">
-                2017-02-20
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2017-02-20 22:10:57" itemprop="dateCreated datePublished" datetime="2017-02-20T22:10:57+08:00">2017-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 20:46:39" itemprop="dateModified" datetime="2019-11-21T20:46:39+08:00">2019-11-21</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1210,12 +758,7 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>随着硬件的发展和多核 CPU 的普及，CPU 的性能越来越强了。为了让 CPU 充分运转，聪明的计算机科学家设计出了多线程模式，一个线程也就是相应的一条代码路径，多线程就是多条代码路径。</p>
+          <p>随着硬件的发展和多核 CPU 的普及，CPU 的性能越来越强了。为了让 CPU 充分运转，聪明的计算机科学家设计出了多线程模式，一个线程也就是相应的一条代码路径，多线程就是多条代码路径。</p>
 <h1 id="线程队列"><a href="#线程队列" class="headerlink" title="线程队列"></a>线程队列</h1><p>那么怎么控制这些代码路径呢，于是就应运而生了一些代码路径的组合，叫做线程队列。这些队列有不同的执行代码路径的方式，比如窜行执行、并行执行等。</p>
 <p>##窜行队列<br>可以把窜行队列当作并行队列的特殊情况，也就是最大并发数量为1。执行完了一个代码路径之后，根据优先级等因素，接着执行下一个，并不保证严格按照先进先出的顺序执行。那么问题来了，假如要控制窜行队列的执行顺序该怎么办呢，于是有了依赖这个概念，也就是一个代码路径依赖于另外一些代码路径，等到它依赖的路径都执行完了，这一个代码路径才能上路，那么这样就能严格控制执行顺序了。</p>
 <h2 id="并行队列"><a href="#并行队列" class="headerlink" title="并行队列"></a>并行队列</h2><p>并行队列呢，也能通过依赖控制好某些路径的先后顺序，但是这个并行出现的问题就是要知道并发出去的代码路径都已经执行完毕，要做下一步工作了，于是并行队列就提供了这个功能。并行队列的应用场景可以是一些相互之间没有影响的工作。</p>
@@ -1225,112 +768,62 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
 <h2 id="条件锁"><a href="#条件锁" class="headerlink" title="条件锁"></a>条件锁</h2><p>比互斥锁多的一个是只有锁在特定条件下才能加锁，释放锁的时候可以指定锁的当前条件。适用于生产者消费者模式，一个线程负责生产，其他线程负责消费。负责生产的轮询进入临界区，条件则是一个判定是否要生产的条件，比如货物数量为10则开始生产，生产完毕后将条件设置为shouldProduct = false，消费线程可以进入临界区消费。负责消费的线程出临界区的时候，根据剩余数量判断是否需要生产，如需生产，则将条件shouldProduct = true，则生产线程进入临界区生产。</p>
 <h2 id="递归锁"><a href="#递归锁" class="headerlink" title="递归锁"></a>递归锁</h2><p>当在递归情况下，使用互斥锁的时候，会造成死锁。这种情况下适用递归锁，允许在一个线程里多次加锁和解锁，当解锁次数跟加锁次数相等时，出临界区，由于要做额外的加锁次数判断，开销会比互斥锁大。</p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/04/React-Native-environment-setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/04/React-Native-environment-setup/" itemprop="url">React Native 初探一：Mac + iOS 开发环境搭建</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/09/04/React-Native-environment-setup/" class="post-title-link" itemprop="url">React Native 初探一：Mac + iOS 开发环境搭建</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-04T18:50:01+08:00">
-                2016-09-04
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2016-09-04 18:50:01" itemprop="dateCreated datePublished" datetime="2016-09-04T18:50:01+08:00">2016-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 21:05:13" itemprop="dateModified" datetime="2019-11-21T21:05:13+08:00">2019-11-21</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1338,12 +831,7 @@ C --> |十六进制| D(Unicode:江,U+6c5f)</pre>
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h2><p>1 . 安装 node 和 watchman。</p>
+          <h2 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h2><p>1 . 安装 node 和 watchman。</p>
 <pre><code>brew install node
 brew install watchman
 </code></pre><p>2 . 安装 React Native。</p>
@@ -1361,112 +849,56 @@ react-native run-ios
 <pre><code>react-native log-ios
 </code></pre><p>3 . Debug 起来也很方便，请先安装好 Chrome，在 iOS 模拟器中 <em>Command⌘ + D</em>，选择 <em>Debug JS Remotely</em>，就可以在 Chrome 愉快的 Debug 了，其它的选项也可以尝试一下。感慨 ReactNative 真是一个伟大的项目，前端真是神奇，FaceBook 真是一个伟大的公司。<br><strong>以上信息全部来自<a href="https://facebook.github.io/react-native/" target="_blank" rel="noopener">React Native官网</a>。</strong></p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/24/prototype-pratice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/07/24/prototype-pratice/" itemprop="url">原型理解碎碎念</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/07/24/prototype-pratice/" class="post-title-link" itemprop="url">原型理解碎碎念</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">发表于</span>
               
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-24T21:38:57+08:00">
-                2016-07-24
-              </time>
-            
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2016-07-24 21:38:57 / 修改时间：22:26:15" itemprop="dateCreated datePublished" datetime="2016-07-24T21:38:57+08:00">2016-07-24</time>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1474,124 +906,69 @@ react-native run-ios
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>   假如把最终的原型定位为100。我们来模拟一个典型的有问题的开发过程：</p>
+          <p>   假如把最终的原型定位为100。我们来模拟一个典型的有问题的开发过程：</p>
 <p>   产品讨论出一个原型，可以定位为80［<em>为什么是80，差异的20算是产品忽略掉的一些情况，会在开发、测试、验收过程中暴露出来</em>］，输出在prd上，这一环节会丢失掉一些信息，prd姑且算有60的原型值吧。</p>
 <p>   接着通过prd输出给开发，这一环节就看开发的阅读理解水平以及认真程度了，忽视了一行字可能就漏了一个功能。好吧，到了开发这里，姑且算为50吧。然后开发结束。</p>
 <p>   接下来给测试，那得看测试吸收了多少prd，算是60吧。OK，测试完毕，接下来到验收环节了。</p>
 <p>   产品发现跟自己想要的完全两码事，然后告诉开发“你们做的是特么的什么玩意儿”，此时应该会伴随着激烈的争吵，最后开发妥协。然后经过一些痛苦的过程之后做到了符合发版的程度，达到的原型值可能只有80+，这个过程处于项目尾期，代码质量无法保证，而且不出意外会加班熬夜。总之，这个开发过程前期会很轻松，因为少做了很多事情，但是到验收阶段会非常痛苦，而且可能还会影响发版。</p>
 <p>   怎么避免这种情况呢，一句话：<strong>尽早把问题暴露出来，然后解决掉</strong>。开发在阅读理解完prd之后，通过与产品经理确认原型信息，让自己与产品经理的理解同步，可能交谈过程中还会发现一些没有考虑到的情况。接下来的开发以及测试环节发现疑问及时找产品经理确认。这样最后在验收环节，也不会出现大的差异。整个项目过程和谐稳定的进行。</p>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/18/Interface-Builder/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pipasese">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="一些记录">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="pipasese的博客">
+      <meta itemprop="name" content="木鱼的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/10/18/Interface-Builder/" itemprop="url">Interface Builder</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/10/18/Interface-Builder/" class="post-title-link" itemprop="url">Interface Builder</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-18T21:32:49+08:00">
-                2015-10-18
-              </time>
-            
+              <span class="post-meta-item-text">发表于</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="创建时间：2015-10-18 21:32:49" itemprop="dateCreated datePublished" datetime="2015-10-18T21:32:49+08:00">2015-10-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 20:58:22" itemprop="dateModified" datetime="2019-11-21T20:58:22+08:00">2019-11-21</time>
+              </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1599,12 +976,7 @@ react-native run-ios
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，<br>准备在项目里尝试用一下nib这一块。</p>
+          <p>这个周末接触了下interface builder，主要涉及到size class 和nib，从最初的抓耳挠腮到初窥门径，还是蛮有成就感的，<br>准备在项目里尝试用一下nib这一块。</p>
 <hr>
 <h1 id="size-class"><a href="#size-class" class="headerlink" title="size class"></a>size class</h1><ul>
 <li>分为C（紧凑） A（任意） R（正常） 三种，<br>假如要在C和R之间做区分，那千万别设置A相关的属性，这样会乱的很，就将C和R分开做</li>
@@ -1625,45 +997,25 @@ react-native run-ios
 <li>不过这种目前只能在<strong>- (void)drawRect:(CGRect)rect</strong>方法里有效，不过这已经很不错了，不过还没想好在哪用。。</li>
 </ul>
 
-          
-        
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
-  </section>
+  </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1671,240 +1023,140 @@ react-native run-ios
           </div>
           
 
-
-          
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-        
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="pipasese" />
-          <p class="site-author-name" itemprop="name">pipasese</p>
-           
-              <p class="site-description motion-element" itemprop="description">一些记录</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">categories</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+    <img class="site-author-image" itemprop="image" alt="木鱼"
+      src="/images/cuijian.jpg">
+  <p class="site-author-name" itemprop="name">木鱼</p>
+  <div class="site-description" itemprop="description">一些记录</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
         
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
 
 
-      </section>
-
-      
-
-      
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        
+
+<div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-tree"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">pipasese</span>
+  <span class="author" itemprop="copyrightHolder">木鱼</span>
 </div>
-
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
-    NexT.Mist
-  </a>
-</div>
-
-
-
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
-    }
-  </script>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
 
         
 
-        
+
+
+
+
+
+
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js"></script>
 
-
-
+<script src="/js/motion.js"></script>
 
 
+<script src="/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -1916,19 +1168,14 @@ react-native run-ios
 
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
 
-  
 
   
 
