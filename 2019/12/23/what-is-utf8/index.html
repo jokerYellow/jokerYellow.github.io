@@ -45,15 +45,15 @@
   };
 </script>
 
-  <meta name="description" content="问题    11100110 10110001 10011111表示什么？  0x00 ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见">
+  <meta name="description" content="问题    11100110 10110001 10011111表示什么？  ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见的如换行键">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UTF-8 字符编码">
 <meta property="og:url" content="http://yoursite.com/2019/12/23/what-is-utf8/index.html">
 <meta property="og:site_name" content="木鱼的博客">
-<meta property="og:description" content="问题    11100110 10110001 10011111表示什么？  0x00 ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见">
+<meta property="og:description" content="问题    11100110 10110001 10011111表示什么？  ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见的如换行键">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-23T13:16:59.000Z">
-<meta property="article:modified_time" content="2020-01-02T11:53:52.795Z">
+<meta property="article:modified_time" content="2020-01-08T10:33:19.602Z">
 <meta property="article:author" content="木鱼">
 <meta property="article:tag" content="utf-8">
 <meta name="twitter:card" content="summary">
@@ -202,7 +202,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-02 19:53:52" itemprop="dateModified" datetime="2020-01-02T19:53:52+08:00">2020-01-02</time>
+                <time title="修改时间：2020-01-08 18:33:19" itemprop="dateModified" datetime="2020-01-08T18:33:19+08:00">2020-01-08</time>
               </span>
 
           
@@ -220,7 +220,7 @@
 <blockquote>
 <p><code>11100110 10110001 10011111</code>表示什么？</p>
 </blockquote>
-<h4 id="0x00-ASCII"><a href="#0x00-ASCII" class="headerlink" title="0x00 ASCII"></a><code>0x00</code> ASCII</h4><blockquote>
+<h4 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h4><blockquote>
 <p>American Standard Code for Information Interchange，美国信息交换标准代码 </p>
 </blockquote>
 <p><code>ASCII</code>最初由美国提出，解决了英语世界在计算机里的编码问题。<br><code>ASCII</code>从<code>00</code>开始，一直到<code>7f</code>，包含了<code>128</code>个字符，其中<code>33</code>个控制字符，<code>95</code>个可见字符。</p>
@@ -230,12 +230,12 @@
 </ol>
 <p>可以通过<code>echo</code>配合<code>xxd</code>命令很简单的获取字符的<code>ASCII</code>值，如下我们就拿到了<code>a</code>的<code>ASCII</code>值为<code>0x61</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> a | xxd</span></span><br><span class="line">00000000: 610a                          a.</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> a | xxd -b                     </span></span><br><span class="line">00000000: 01100001 00001010              a.</span><br></pre></td></tr></table></figure></p>
 <p>随着互联网在全世界的普及，<code>ASCII</code>的局限性慢慢凸显，其无法表示其他语种如汉语、日语的字符。于是发展出了<code>Unicode</code>。</p>
-<h4 id="0x01-Unicode"><a href="#0x01-Unicode" class="headerlink" title="0x01 Unicode"></a><code>0x01</code> Unicode</h4><blockquote>
+<h4 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h4><blockquote>
 <p>Unicode，又称为万国码、国际码、统一码、单一码</p>
 </blockquote>
 <p><code>Unicode</code>是一项业界标准，为每一个字符都制定了唯一的编码，统一了各语种的编码。<br>比如<code>U+0061</code>表示<code>a</code>，<code>U+660e</code>代表汉字的<code>明</code>字，<code>U+1f600</code>表示露齿而笑的脸<code>😀</code>,<code>U+1F1F3</code>表示中国国旗<code>🇨🇳</code></p>
 <p><code>Unicode</code>里一个字型可以代表多种字符编码，甚至是某些编码的组合。<br>如<code>é</code>既可以用<code>U+00e9</code>表示，也可以用<code>U+0065U+0301</code>的组合表示。所以我们使用的时候，还是得根据实际使用的意义来输入，否则在计算长度以及字符串比较等方面就会不一致，造成不必要的麻烦，而且这些问题排查起来也很困难。</p>
-<h4 id="0x02-UTF-8"><a href="#0x02-UTF-8" class="headerlink" title="0x02 UTF-8"></a><code>0x02</code> UTF-8</h4><blockquote>
+<h4 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h4><blockquote>
 <p>8-bit Unicode Transformation Format</p>
 </blockquote>
 <p><code>UTF-8</code>是一种针对<code>Unicode</code>的可变长度字符编码，是一种前缀码。</p>
@@ -296,7 +296,7 @@
 </blockquote>
 <p>可以看出这段二进制编码实际上是<code>UTF-8</code>编码，按照上表的规则，可以推导出其<code>Unicode</code>字符</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD </span><br><span class="line">B(11100110  10110001 10011111) --&gt; |Unicode| C(0110 1100 0101 1111)</span><br><span class="line">C --&gt; |十六进制| D(Unicode:江,U+6c5f)</span><br></pre></td></tr></table></figure>
-<h4 id="0x03-应用之阅读以及修改机器码字符段"><a href="#0x03-应用之阅读以及修改机器码字符段" class="headerlink" title="0x03 应用之阅读以及修改机器码字符段"></a><code>0x03</code> 应用之阅读以及修改机器码字符段</h4><p>学以致用，这样效果才会好<br>这是一段简单的输出字符串的程序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello,world!黄"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>编译<br><code>$ gcc main.c | ./a.out</code><br>输出：<code>hello,world!黄</code></p>
+<h4 id="应用：修改机器码字符段"><a href="#应用：修改机器码字符段" class="headerlink" title="应用：修改机器码字符段"></a>应用：修改机器码字符段</h4><p>学以致用，这样效果才会好<br>这是一段简单的输出字符串的程序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello,world!黄"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>编译<br><code>$ gcc main.c | ./a.out</code><br>输出：<code>hello,world!黄</code></p>
 <p>查看目标文件的段信息<br><code>$ objdump -s a.out</code><br>输出里的字符段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure><br>我们可以知道，这一串十六进制编码代表了<code>UTF-8</code>编码的<code>hello,world!黄</code>。可以尝试对其进行修改<br><code>vim -b a.out</code><br>打开十六进制模式<br><code>%!xxd</code><br>查找到hello部分进行修改<br><code>/hello</code><br>恢复成二进制模式<br><code>%!xxd -r</code><br>保存退出<br><code>wq!</code><br>查看字符段<br><code>$ objdump -s a.out</code><br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure></p>
 <p><code>$ ./a.out</code><br>输出：<code>hello,world!江</code><br>这样，我们就修改了机器码。</p>
 <p>到这里，笔者也想通了一些问题，比如<code>hardCode</code>进代码里的密钥肯定是不安全的，存在被查看以及被篡改的风险；二进制文件也是不安全的，所以<code>Apple</code>使用了代码签名的机制，来保证设备上运行的代码是未被篡改过的。</p>
@@ -368,7 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x00-ASCII"><span class="nav-number">1.</span> <span class="nav-text">0x00 ASCII</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01-Unicode"><span class="nav-number">2.</span> <span class="nav-text">0x01 Unicode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-UTF-8"><span class="nav-number">3.</span> <span class="nav-text">0x02 UTF-8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-应用之阅读以及修改机器码字符段"><span class="nav-number">4.</span> <span class="nav-text">0x03 应用之阅读以及修改机器码字符段</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参考链接："><span class="nav-number">4.0.1.</span> <span class="nav-text">参考链接：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ASCII"><span class="nav-number">1.</span> <span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unicode"><span class="nav-number">2.</span> <span class="nav-text">Unicode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UTF-8"><span class="nav-number">3.</span> <span class="nav-text">UTF-8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用：修改机器码字符段"><span class="nav-number">4.</span> <span class="nav-text">应用：修改机器码字符段</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参考链接："><span class="nav-number">4.0.1.</span> <span class="nav-text">参考链接：</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -469,7 +469,6 @@
 <script src="/js/next-boot.js"></script>
 
 
-  <script defer src="/lib/three/three.min.js"></script>
 
 
   
