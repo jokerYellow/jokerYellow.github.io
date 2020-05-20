@@ -143,6 +143,11 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-track">
+
+    <a href="/track/" rel="section"><i class="fa fa-fw fa-car"></i>足迹</a>
+
+  </li>
   </ul>
 
 </nav>
@@ -165,6 +170,446 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/20/macho-read-byte/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="我的精神家园">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/20/macho-read-byte/" class="post-title-link" itemprop="url">Mach-O 可重定向目标文件剖析</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-20 20:01:41 / 修改时间：21:56:22" itemprop="dateCreated datePublished" datetime="2020-05-20T20:01:41+08:00">2020-05-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>目标文件，又称为可重定向目标文件，是源代码经过编译之后的产物。目标文件链接之后可以成为可执行文件，聚合之后可以成为静态库，也可以将其处理成动态库。<br>Mach-O 格式是 MacOS 系统使用的可执行文件、目标文件、库的格式。<br>本文从一个简单的可重定向文件开始，一个字节一个字节的说一下 Mach-O 格式。</p>
+<h2 id="生成目标文件"><a href="#生成目标文件" class="headerlink" title="生成目标文件"></a>生成目标文件</h2><p>先生成一个简单的目标文件，新建 main.c 文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译 main.c 得到 main.o 文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c main.c -o main.o</span><br></pre></td></tr></table></figure>
+<h2 id="查看目标文件"><a href="#查看目标文件" class="headerlink" title="查看目标文件"></a>查看目标文件</h2><p>文件的本质，包括 main.o 在内，实际上是二进制数据的集合。<br>我们可以通过 xxd 来查看该文件的二进制和十六进制形式<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//二进制</span><br><span class="line">xxd -b main.o</span><br><span class="line">//十六进制</span><br><span class="line">xxd main.o</span><br></pre></td></tr></table></figure></p>
+<p><code>main.o</code> 的十六进制形式数据如下<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00000000</span>: cffa edfe <span class="number">0700</span> <span class="number">0001</span> <span class="number">0300</span> <span class="number">0000</span> <span class="number">0100</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000010</span>: <span class="number">0400</span> <span class="number">0000</span> b801 <span class="number">0000</span> <span class="number">0020</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ......... ......</span><br><span class="line"><span class="number">00000020</span>: <span class="number">1900</span> <span class="number">0000</span> <span class="number">3801</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ...<span class="number">.8</span>...........</span><br><span class="line"><span class="number">00000030</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000040</span>: <span class="number">7800</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> d801 <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  x...............</span><br><span class="line"><span class="number">00000050</span>: <span class="number">7800</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0700</span> <span class="number">0000</span> <span class="number">0700</span> <span class="number">0000</span>  x...............</span><br><span class="line"><span class="number">00000060</span>: <span class="number">0300</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">5f</span>5f <span class="number">7465</span> <span class="number">7874</span> <span class="number">0000</span>  ........__text..</span><br><span class="line"><span class="number">00000070</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">5f</span>5f <span class="number">5445</span> <span class="number">5854</span> <span class="number">0000</span>  ........__TEXT..</span><br><span class="line"><span class="number">00000080</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000090</span>: <span class="number">1200</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> d801 <span class="number">0000</span> <span class="number">0400</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">000000</span>a0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0004</span> <span class="number">0080</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">000000</span>b0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">5f</span>5f <span class="number">636f</span> <span class="number">6</span>d70 <span class="number">6163</span>  ........__compac</span><br><span class="line"><span class="number">000000</span>c0: <span class="number">745f</span> <span class="number">756</span>e <span class="number">7769</span> <span class="number">6e64</span> <span class="number">5f</span>5f <span class="number">4</span>c44 <span class="number">0000</span> <span class="number">0000</span>  t_unwind__LD....</span><br><span class="line"><span class="number">000000</span>d0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">1800</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">000000e0</span>: <span class="number">2000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> f001 <span class="number">0000</span> <span class="number">0300</span> <span class="number">0000</span>   ...............</span><br><span class="line"><span class="number">000000f</span>0: <span class="number">5002</span> <span class="number">0000</span> <span class="number">0100</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0002</span> <span class="number">0000</span> <span class="number">0000</span>  P...............</span><br><span class="line"><span class="number">00000100</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">5f</span>5f <span class="number">6568</span> <span class="number">5f</span>66 <span class="number">7261</span>  ........__eh_fra</span><br><span class="line"><span class="number">00000110</span>: <span class="number">6</span>d65 <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">5f</span>5f <span class="number">5445</span> <span class="number">5854</span> <span class="number">0000</span>  me......__TEXT..</span><br><span class="line"><span class="number">00000120</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">3800</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  .......<span class="number">.8</span>.......</span><br><span class="line"><span class="number">00000130</span>: <span class="number">4000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">1002</span> <span class="number">0000</span> <span class="number">0300</span> <span class="number">0000</span>  @...............</span><br><span class="line"><span class="number">00000140</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0</span>b00 <span class="number">0068</span> <span class="number">0000</span> <span class="number">0000</span>  ...........h....</span><br><span class="line"><span class="number">00000150</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">3200</span> <span class="number">0000</span> <span class="number">1800</span> <span class="number">0000</span>  .......<span class="number">.2</span>.......</span><br><span class="line"><span class="number">00000160</span>: <span class="number">0100</span> <span class="number">0000</span> <span class="number">000f</span> <span class="number">0</span>a00 <span class="number">040f</span> <span class="number">0</span>a00 <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000170</span>: <span class="number">0200</span> <span class="number">0000</span> <span class="number">1800</span> <span class="number">0000</span> <span class="number">5802</span> <span class="number">0000</span> <span class="number">0100</span> <span class="number">0000</span>  ........X.......</span><br><span class="line"><span class="number">00000180</span>: <span class="number">6802</span> <span class="number">0000</span> <span class="number">0800</span> <span class="number">0000</span> <span class="number">0</span>b00 <span class="number">0000</span> <span class="number">5000</span> <span class="number">0000</span>  h...........P...</span><br><span class="line"><span class="number">00000190</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0100</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">000001</span>a0: <span class="number">0100</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">000001</span>b0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">000001</span>c0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">000001</span>d0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">5548</span> <span class="number">89e5</span> c745 fc00  ........UH...E..</span><br><span class="line"><span class="number">000001e0</span>: <span class="number">0000</span> <span class="number">00</span>b8 <span class="number">0200</span> <span class="number">0000</span> <span class="number">5</span>dc3 <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ........].......</span><br><span class="line"><span class="number">000001f</span>0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">1200</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span>  ................</span><br><span class="line"><span class="number">00000200</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000210</span>: <span class="number">1400</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">017</span>a <span class="number">5200</span> <span class="number">0178</span> <span class="number">1001</span>  .........zR..x..</span><br><span class="line"><span class="number">00000220</span>: <span class="number">100</span>c <span class="number">0708</span> <span class="number">9001</span> <span class="number">0000</span> <span class="number">2400</span> <span class="number">0000</span> <span class="number">1</span>c00 <span class="number">0000</span>  ........$.......</span><br><span class="line"><span class="number">00000230</span>: a8ff ffff ffff ffff <span class="number">1200</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000240</span>: <span class="number">0041</span> <span class="number">0e10</span> <span class="number">8602</span> <span class="number">430</span>d <span class="number">0600</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  .A....C.........</span><br><span class="line"><span class="number">00000250</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0100</span> <span class="number">0006</span> <span class="number">0100</span> <span class="number">0000</span> <span class="number">0f</span>01 <span class="number">0000</span>  ................</span><br><span class="line"><span class="number">00000260</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">005f</span> <span class="number">6</span>d61 <span class="number">696</span>e <span class="number">0000</span>  ........._main..</span><br></pre></td></tr></table></figure></p>
+<p>Mach-O 文件的开头，32 位下是结构体 <code>mach_header</code> ，64 位下是结构体 <code>mach_header_64</code>。可以在 apple 开源的 <a href="https://opensource.apple.com/source/cctools/cctools-795/include/mach-o/loader.h" target="_blank" rel="noopener">mach-o/loader.h</a> 里找到详细信息。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * The 32-bit mach header appears at the very beginning of the object file for</span></span><br><span class="line"><span class="comment"> * 32-bit architectures.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mach_header</span> &#123;</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	magic;		<span class="comment">/* mach magic number identifier */</span></span><br><span class="line">	<span class="keyword">cpu_type_t</span>	cputype;	<span class="comment">/* cpu specifier */</span></span><br><span class="line">	<span class="keyword">cpu_subtype_t</span>	cpusubtype;	<span class="comment">/* machine specifier */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	filetype;	<span class="comment">/* type of file */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	ncmds;		<span class="comment">/* number of load commands */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	sizeofcmds;	<span class="comment">/* the size of all the load commands */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	flags;		<span class="comment">/* flags */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Constant for the magic field of the mach_header (32-bit architectures) */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	MH_MAGIC	0xfeedface	<span class="comment">/* the mach magic number */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MH_CIGAM	0xcefaedfe	<span class="comment">/* NXSwapInt(MH_MAGIC) */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * The 64-bit mach header appears at the very beginning of object files for</span></span><br><span class="line"><span class="comment"> * 64-bit architectures.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mach_header_64</span> &#123;</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	magic;		<span class="comment">/* mach magic number identifier */</span></span><br><span class="line">	<span class="keyword">cpu_type_t</span>	cputype;	<span class="comment">/* cpu specifier */</span></span><br><span class="line">	<span class="keyword">cpu_subtype_t</span>	cpusubtype;	<span class="comment">/* machine specifier */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	filetype;	<span class="comment">/* type of file */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	ncmds;		<span class="comment">/* number of load commands */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	sizeofcmds;	<span class="comment">/* the size of all the load commands */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	flags;		<span class="comment">/* flags */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	reserved;	<span class="comment">/* reserved */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Constant for the magic field of the mach_header_64 (64-bit architectures) */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MH_MAGIC_64 0xfeedfacf <span class="comment">/* the 64-bit mach magic number */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MH_CIGAM_64 0xcffaedfe <span class="comment">/* NXSwapInt(MH_MAGIC_64) */</span></span></span><br></pre></td></tr></table></figure></p>
+<p>不论是 <code>mach_header</code> 还是 <code>mach_header_64</code>，其开头都是一个 <code>uint32_t</code> 类型的成员 <code>magic</code>，文件前32位比特（四个字节）表示的就是 <code>magic</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00000000</span>: cffa edfe</span><br></pre></td></tr></table></figure></p>
+<p>即 <code>cffa edfe</code>，MacOS 是小端序，需要反过来读，值为 <code>0xfeedfacf</code>，与<code>MH_MAGIC_64</code>相等，代表 64 位的 Mach-O 文件。确定了 <code>magic</code> 之后，可以参照 <code>mach_header_64</code> 接着往下解析，读出其余成员的值。</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>offset</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>magic</td>
+<td>0x0</td>
+<td>0xfeedfacf</td>
+<td>MH_MAGIC_64</td>
+</tr>
+<tr>
+<td>cputype</td>
+<td>0x4</td>
+<td>0x01000007</td>
+<td>CPU_TYPE_X86_64</td>
+</tr>
+<tr>
+<td>cpusubtype：</td>
+<td>0x8</td>
+<td>0x00000003</td>
+<td>CPU_SUBTYPE_X86_64_ALL</td>
+</tr>
+<tr>
+<td>filetype</td>
+<td>0xc</td>
+<td>0x00000001</td>
+<td>MH_OBJECT，代表可重定位目标文件</td>
+</tr>
+<tr>
+<td>ncmds</td>
+<td>0x10</td>
+<td>0x00000004</td>
+<td>代表有4条Load Commands</td>
+</tr>
+<tr>
+<td>sizeofcmds</td>
+<td>0x14</td>
+<td>0x000001b8</td>
+<td>表示Load Commands的size</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>0x18</td>
+<td>0x00002000</td>
+<td>MH_SUBSECTIONS_VIA_SYMBOLS</td>
+</tr>
+<tr>
+<td>reserved</td>
+<td>0x1c</td>
+<td>0x00000000</td>
+<td>保留字</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Load-Commands"><a href="#Load-Commands" class="headerlink" title="Load Commands"></a>Load Commands</h3><p>mach_header之后，就是load commands了。从前面可以看出有4条Load commands,接下来会存在4个 load_command 信息，其结构如下<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">load_command</span> &#123;</span></span><br><span class="line">	<span class="keyword">uint32_t</span> cmd;		<span class="comment">/* type of load command */</span></span><br><span class="line">	<span class="keyword">uint32_t</span> cmdsize;	<span class="comment">/* total size of command in bytes */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>cmd 成员可以获得 load command 的类型，然后根据类型来决定不同的结构来解释<br>cmdsize 表示该 load command 的size，通过offset+size可以得出下个load command的offset地址<br>main.o 文件的四个load_command如下，第一个cmd在mach_header后面，offset就是mach_header_64的size，0x20。</p>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>cmd offset</th>
+<th>cmd value</th>
+<th>cmdsize offset</th>
+<th>cmdsize value</th>
+<th>type</th>
+<th>next cmd offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0x00000020</td>
+<td>0x0000019</td>
+<td>0x00000024</td>
+<td>0x00000138</td>
+<td>LC_SEGMENT_64</td>
+<td>0x00000158</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0x00000158</td>
+<td>0x00000032</td>
+<td>0x0000015c</td>
+<td>0x00000018</td>
+<td>LC_BUILD_VERSION</td>
+<td>0x00000170</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0x00000170</td>
+<td>0x00000002</td>
+<td>0x0000174</td>
+<td>0x00000018</td>
+<td>LC_SYMTAB</td>
+<td>0x00000188</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0x00000188</td>
+<td>0x0000000b</td>
+<td>0x000018c</td>
+<td>0x00000050</td>
+<td>LC_DYSYMTAB</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h4 id="LC-SEGMENT-64"><a href="#LC-SEGMENT-64" class="headerlink" title="LC_SEGMENT_64"></a>LC_SEGMENT_64</h4><p>现在我们看一下第一个load_command，LC_SEGMENT_64 ，从 <a href="https://opensource.apple.com/source/cctools/cctools-795/include/mach-o/loader.h" target="_blank" rel="noopener">loader.h</a> 可以查到其数据结构<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * The 64-bit segment load command indicates that a part of this file is to be</span></span><br><span class="line"><span class="comment"> * mapped into a 64-bit task's address space.  If the 64-bit segment has</span></span><br><span class="line"><span class="comment"> * sections then section_64 structures directly follow the 64-bit segment</span></span><br><span class="line"><span class="comment"> * command and their size is reflected in cmdsize.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">segment_command_64</span> &#123;</span> <span class="comment">/* for 64-bit architectures */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	cmd;		<span class="comment">/* LC_SEGMENT_64 */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	cmdsize;	<span class="comment">/* includes sizeof section_64 structs */</span></span><br><span class="line">	<span class="keyword">char</span>		segname[<span class="number">16</span>];	<span class="comment">/* segment name */</span></span><br><span class="line">	<span class="keyword">uint64_t</span>	vmaddr;		<span class="comment">/* memory address of this segment */</span></span><br><span class="line">	<span class="keyword">uint64_t</span>	vmsize;		<span class="comment">/* memory size of this segment */</span></span><br><span class="line">	<span class="keyword">uint64_t</span>	fileoff;	<span class="comment">/* file offset of this segment */</span></span><br><span class="line">	<span class="keyword">uint64_t</span>	filesize;	<span class="comment">/* amount to map from the file */</span></span><br><span class="line">	<span class="keyword">vm_prot_t</span>	maxprot;	<span class="comment">/* maximum VM protection */</span></span><br><span class="line">	<span class="keyword">vm_prot_t</span>	initprot;	<span class="comment">/* initial VM protection */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	nsects;		<span class="comment">/* number of sections in segment */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	flags;		<span class="comment">/* flags */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>offset</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd</td>
+<td>0x00000020</td>
+<td>0x00000019</td>
+<td>LC_SEGMENT_64</td>
+</tr>
+<tr>
+<td>cmdsize</td>
+<td>0x00000024</td>
+<td>0x00000138</td>
+<td>该command 结构体所占的size</td>
+</tr>
+<tr>
+<td>segname</td>
+<td>0x00000028</td>
+<td>0</td>
+<td>16 位长度的字符串</td>
+</tr>
+<tr>
+<td>vmaddr</td>
+<td>0x00000038</td>
+<td>0</td>
+<td>VM Address</td>
+</tr>
+<tr>
+<td>vmsize</td>
+<td>0x00000040</td>
+<td>0x0000000000000078</td>
+<td>VM Size</td>
+</tr>
+<tr>
+<td>fileoff</td>
+<td>0x00000048</td>
+<td>0x00000000000001d8</td>
+<td>main.o文件里的偏移量 offset</td>
+</tr>
+<tr>
+<td>filesize</td>
+<td>0x00000050</td>
+<td>0x0000000000000078</td>
+<td>File Size</td>
+</tr>
+<tr>
+<td>maxprot</td>
+<td>0x00000058</td>
+<td>0x00000007</td>
+<td>Maximum VM Protection,VM_PORT_READ,VM_PORT_WRITE,VM_PORT_EXECUTE</td>
+</tr>
+<tr>
+<td>initprot</td>
+<td>0x0000005c</td>
+<td>0x00000007</td>
+<td>Maximum VM Protection,VM_PORT_READ,VM_PORT_WRITE,VM_PORT_EXECUTE</td>
+</tr>
+<tr>
+<td>nsects</td>
+<td>0x00000060</td>
+<td>0x00000003</td>
+<td>Number of Sections，包含3个section，第一个section的header紧挨着segment_command_64的结构体后面</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>0x00000064</td>
+<td>0x00000000</td>
+<td>Flags</td>
+</tr>
+</tbody>
+</table>
+<h4 id="section-64"><a href="#section-64" class="headerlink" title="section_64"></a>section_64</h4><p>我们只看第一个section_64</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">section_64</span> &#123;</span> <span class="comment">/* for 64-bit architectures */</span></span><br><span class="line">	<span class="keyword">char</span>		sectname[<span class="number">16</span>];	<span class="comment">/* name of this section */</span></span><br><span class="line">	<span class="keyword">char</span>		segname[<span class="number">16</span>];	<span class="comment">/* segment this section goes in */</span></span><br><span class="line">	<span class="keyword">uint64_t</span>	addr;		<span class="comment">/* memory address of this section */</span></span><br><span class="line">	<span class="keyword">uint64_t</span>	<span class="built_in">size</span>;		<span class="comment">/* size in bytes of this section */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	offset;		<span class="comment">/* file offset of this section */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	align;		<span class="comment">/* section alignment (power of 2) */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	reloff;		<span class="comment">/* file offset of relocation entries */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	nreloc;		<span class="comment">/* number of relocation entries */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	flags;		<span class="comment">/* flags (section type and attributes)*/</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	reserved1;	<span class="comment">/* reserved (for offset or index) */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	reserved2;	<span class="comment">/* reserved (for count or sizeof) */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	reserved3;	<span class="comment">/* reserved */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>offset</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sectname</td>
+<td>0x00000068</td>
+<td>5f5f 7465 7874 0000 0000 0000 0000 0000</td>
+<td>ascii 解析为 “__text”</td>
+</tr>
+<tr>
+<td>segname</td>
+<td>0x00000078</td>
+<td>5f5f 5445 5854 0000 0000 0000 0000 0000</td>
+<td>ascii 解析为 “__TEXT”</td>
+</tr>
+<tr>
+<td>addr</td>
+<td>0x00000088</td>
+<td>0x0000000000000000</td>
+<td>Address，内存地址，目前为0，链接时会重定向</td>
+</tr>
+<tr>
+<td>size</td>
+<td>0x00000090</td>
+<td>0x0000000000000012</td>
+<td>Size,该section的size</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0x00000098</td>
+<td>0x000001d8</td>
+<td>该section在main.o文件的offset</td>
+</tr>
+<tr>
+<td>align</td>
+<td>0x0000009c</td>
+<td>0x00000004</td>
+<td>内存对齐数值</td>
+</tr>
+<tr>
+<td>reloff</td>
+<td>0x000000a0</td>
+<td>0x00000000</td>
+<td>Relocations Offset,重定向偏移地址</td>
+</tr>
+<tr>
+<td>nreloc</td>
+<td>0x000000a4</td>
+<td>0x00000000</td>
+<td>Number of Relocations,重定向数</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>0x000000a8</td>
+<td>0x80000400</td>
+<td>Flags,S_REGULAR,S_ATTR_PURE_INSTRUCTIONS,S_ATTR_SOME_INSTRUCTIONS</td>
+</tr>
+<tr>
+<td>reserved1</td>
+<td>0x000000ac</td>
+<td>0x00000000</td>
+<td>Reserved1</td>
+</tr>
+<tr>
+<td>reserved2</td>
+<td>0x000000b0</td>
+<td>0x00000000</td>
+<td>Reserved2</td>
+</tr>
+<tr>
+<td>reserved3</td>
+<td>0x000000b4</td>
+<td>0x00000000</td>
+<td>Reserved3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="section-64-的-content"><a href="#section-64-的-content" class="headerlink" title="section_64 的 content"></a>section_64 的 content</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">000001</span>d0: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">5548</span> <span class="number">89e5</span> c745 fc00  ........UH...E..</span><br><span class="line"><span class="number">000001e0</span>: <span class="number">0000</span> <span class="number">00</span>b8 <span class="number">0200</span> <span class="number">0000</span> <span class="number">5</span>dc3 <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ........].......</span><br></pre></td></tr></table></figure>
+<p>这是一段机器码，翻译为汇编如下<br><figure class="highlight as"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x000001d8</span> <span class="number">55</span>            pushq %rbp</span><br><span class="line"><span class="number">0x000001d9</span> <span class="number">4889e5</span>        movq  %rsp,%rbp</span><br><span class="line"><span class="number">0x000001dc</span> c745fc00000000 movl   $<span class="string">"0x0 (_main)"</span>,<span class="number">-0x4</span>(%rbp)</span><br><span class="line"><span class="number">0x000001e3</span> b80x000000     movl  $<span class="number">0x2</span>,%eax</span><br><span class="line"><span class="number">0x000001e8</span> <span class="number">5</span>d            popq   %rbp</span><br><span class="line"><span class="number">0x000001e9</span> c3            ret</span><br></pre></td></tr></table></figure></p>
+<h3 id="LC-SYMTAB"><a href="#LC-SYMTAB" class="headerlink" title="LC_SYMTAB"></a>LC_SYMTAB</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">symtab_command</span> &#123;</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	cmd;		<span class="comment">/* LC_SYMTAB */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	cmdsize;	<span class="comment">/* sizeof(struct symtab_command) */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	symoff;		<span class="comment">/* symbol table offset */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	nsyms;		<span class="comment">/* number of symbol table entries */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	stroff;		<span class="comment">/* string table offset */</span></span><br><span class="line">	<span class="keyword">uint32_t</span>	strsize;	<span class="comment">/* string table size in bytes */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>offset</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd</td>
+<td>0x00000170</td>
+<td>0x00000002</td>
+<td>LC_SYMTAB</td>
+</tr>
+<tr>
+<td>cmdsize</td>
+<td>0x00000174</td>
+<td>0x00000018</td>
+<td>Command Size</td>
+</tr>
+<tr>
+<td>symoff</td>
+<td>0x00000178</td>
+<td>0x00000258</td>
+<td>符号表在文件中的offset</td>
+</tr>
+<tr>
+<td>nsyms</td>
+<td>0x0000017c</td>
+<td>0x00000001</td>
+<td>符号数量</td>
+</tr>
+<tr>
+<td>stroff</td>
+<td>0x00000180</td>
+<td>0x00000268</td>
+<td>字符串表在文件中的offset</td>
+</tr>
+<tr>
+<td>strsize</td>
+<td>0x00000184</td>
+<td>0x0000000b</td>
+<td>字符串表长度</td>
+</tr>
+</tbody>
+</table>
+<p>我们从 <code>0x258</code> 来查看符号表，根据结构体 <code>nlist_64</code> 来解释<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * This is the symbol table entry structure for 64-bit architectures.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nlist_64</span> &#123;</span></span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">uint32_t</span>  n_strx; <span class="comment">/* index into the string table */</span></span><br><span class="line">    &#125; n_un;</span><br><span class="line">    <span class="keyword">uint8_t</span> n_type;        <span class="comment">/* type flag, see below */</span></span><br><span class="line">    <span class="keyword">uint8_t</span> n_sect;        <span class="comment">/* section number or NO_SECT */</span></span><br><span class="line">    <span class="keyword">uint16_t</span> n_desc;       <span class="comment">/* see &lt;mach-o/stab.h&gt; */</span></span><br><span class="line">    <span class="keyword">uint64_t</span> n_value;      <span class="comment">/* value of this symbol (or stab offset) */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>offset</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n_un.n_strx</td>
+<td>0x00000258</td>
+<td>0x00000001</td>
+<td>在字符串表中的偏移量</td>
+</tr>
+<tr>
+<td>n_type</td>
+<td>0x0000025c</td>
+<td>0x0000000f</td>
+<td>代表 N_EXT,N_SECT。N_EXT 代表支持外部符号引用，N_SECT 表示该符号定义在第 1(n_sect) 个 section</td>
+</tr>
+<tr>
+<td>n_sect</td>
+<td>0x0000025d</td>
+<td>0x00000001</td>
+<td>符号表在Section里的索引号</td>
+</tr>
+<tr>
+<td>n_desc</td>
+<td>0x0000025e</td>
+<td>0x0000</td>
+<td>–</td>
+</tr>
+<tr>
+<td>n_value</td>
+<td>0x00000260</td>
+<td>0x0000000000000000</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字符串表"><a href="#字符串表" class="headerlink" title="字符串表"></a>字符串表</h3><p>根据符号表，我们得知字符串表在 main.o 文件的 offset 为 <code>0x268</code><br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x00000268</span> <span class="number">00</span> <span class="number">5f</span> <span class="number">6</span>d <span class="number">61</span> <span class="number">69</span> <span class="number">6</span>e <span class="number">00</span> <span class="number">00</span></span><br></pre></td></tr></table></figure><br>而唯一的符号，在字符串表的位置是 1，那么我们从 <code>0x267</code> 开始读，读到 <code>/0</code> 终止，根据 <a href="http://www.asciitable.com/" target="_blank" rel="noopener">ascii</a> 可以得知其符号名为 <code>_main</code>。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>main.o 文件里其他的 Section_header 还有 __compact_unwind、__eh_frame、reloadcations，跟 debug 调试有关。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -933,70 +1378,6 @@ react-native run-ios
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/24/prototype-pratice/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/cuijian.jpg">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="我的精神家园">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/07/24/prototype-pratice/" class="post-title-link" itemprop="url">原型理解碎碎念</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2016-07-24 21:38:57 / 修改时间：22:26:15" itemprop="dateCreated datePublished" datetime="2016-07-24T21:38:57+08:00">2016-07-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>   假如把最终的原型定位为100。我们来模拟一个典型的有问题的开发过程：</p>
-<p>   产品讨论出一个原型，可以定位为80［<em>为什么是80，差异的20算是产品忽略掉的一些情况，会在开发、测试、验收过程中暴露出来</em>］，输出在prd上，这一环节会丢失掉一些信息，prd姑且算有60的原型值吧。</p>
-<p>   接着通过prd输出给开发，这一环节就看开发的阅读理解水平以及认真程度了，忽视了一行字可能就漏了一个功能。好吧，到了开发这里，姑且算为50吧。然后开发结束。</p>
-<p>   接下来给测试，那得看测试吸收了多少prd，算是60吧。OK，测试完毕，接下来到验收环节了。</p>
-<p>   产品发现跟自己想要的完全两码事，然后告诉开发“你们做的是特么的什么玩意儿”，此时应该会伴随着激烈的争吵，最后开发妥协。然后经过一些痛苦的过程之后做到了符合发版的程度，达到的原型值可能只有80+，这个过程处于项目尾期，代码质量无法保证，而且不出意外会加班熬夜。总之，这个开发过程前期会很轻松，因为少做了很多事情，但是到验收阶段会非常痛苦，而且可能还会影响发版。</p>
-<p>   怎么避免这种情况呢，一句话：<strong>尽早把问题暴露出来，然后解决掉</strong>。开发在阅读理解完prd之后，通过与产品经理确认原型信息，让自己与产品经理的理解同步，可能交谈过程中还会发现一些没有考虑到的情况。接下来的开发以及测试环节发现疑问及时找产品经理确认。这样最后在验收环节，也不会出现大的差异。整个项目过程和谐稳定的进行。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1047,7 +1428,7 @@ react-native run-ios
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
