@@ -45,17 +45,21 @@
   };
 </script>
 
-  <meta name="description" content="我的精神家园">
-<meta property="og:type" content="website">
-<meta property="og:title" content="木鱼的博客">
-<meta property="og:url" content="http://yoursite.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
+  <meta name="description" content="最近对 CI&#x2F;CD 有一些实践，记录一下。每个人对事物的认识都是有一个发展过程的，我也不例外。 手动时代刚开始 iOS 开发的我，工作流是这样的  开发功能自测功能没问题，提测 接着通过 Xcode 手动出包，完了导出来，上传到平台供测试下载 测试发现 bug，修复 bug，再重复一次步骤 2  这个流程的缺点是耗费人力，以及没有单元测试，无法确保质量。 半自动时代后来，接触到了 Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的 iOS 工程化发展史">
+<meta property="og:url" content="http://yoursite.com/2020/06/30/my-ci-history/index.html">
 <meta property="og:site_name" content="木鱼的博客">
-<meta property="og:description" content="我的精神家园">
+<meta property="og:description" content="最近对 CI&#x2F;CD 有一些实践，记录一下。每个人对事物的认识都是有一个发展过程的，我也不例外。 手动时代刚开始 iOS 开发的我，工作流是这样的  开发功能自测功能没问题，提测 接着通过 Xcode 手动出包，完了导出来，上传到平台供测试下载 测试发现 bug，修复 bug，再重复一次步骤 2  这个流程的缺点是耗费人力，以及没有单元测试，无法确保质量。 半自动时代后来，接触到了 Jenkins">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-30T03:45:39.000Z">
+<meta property="article:modified_time" content="2020-06-30T04:31:52.374Z">
 <meta property="article:author" content="木鱼">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="CI&#x2F;CD">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+<link rel="canonical" href="http://yoursite.com/2020/06/30/my-ci-history/">
 
 
 <script id="page-configurations">
@@ -63,13 +67,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: 多线程 | 木鱼的博客</title>
+  <title>我的 iOS 工程化发展史 | 木鱼的博客</title>
   
 
 
@@ -174,50 +178,117 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">多线程
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/30/my-ci-history/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="我的精神家园">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我的 iOS 工程化发展史
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-30 11:45:39 / 修改时间：12:31:52" itemprop="dateCreated datePublished" datetime="2020-06-30T11:45:39+08:00">2020-06-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2017</h1>
+        <p>最近对 CI/CD 有一些实践，记录一下。<br>每个人对事物的认识都是有一个发展过程的，我也不例外。</p>
+<h3 id="手动时代"><a href="#手动时代" class="headerlink" title="手动时代"></a>手动时代</h3><p>刚开始 iOS 开发的我，工作流是这样的</p>
+<ol>
+<li>开发功能自测功能没问题，提测</li>
+<li>接着通过 Xcode 手动出包，完了导出来，上传到平台供测试下载</li>
+<li>测试发现 bug，修复 bug，再重复一次步骤 2</li>
+</ol>
+<p>这个流程的缺点是耗费人力，以及没有单元测试，无法确保质量。</p>
+<h3 id="半自动时代"><a href="#半自动时代" class="headerlink" title="半自动时代"></a>半自动时代</h3><p>后来，接触到了 Jenkins 以及一些脚本知识<br>于是我就写了个发包的脚本，依赖安装、编译、打包、发布一气呵成。配合 Jenkins 只需要点击一下就行了。<br>我的工作流变成了如下流程：</p>
+<ol>
+<li>开发</li>
+<li>完成功能自测功能没问题就提测</li>
+<li>Jenkins 出包</li>
+<li>修改 bug，重复步骤 3</li>
+</ol>
+<p>这个流程让我尝到了脚本的甜头，省去了跑 Xcode 出包的繁琐过程。但是仍然没有单元测试，无法确保质量。</p>
+<h3 id="自动时代"><a href="#自动时代" class="headerlink" title="自动时代"></a>自动时代</h3><p>这里要提一件事，有很长一段时间我在用 Go 刷 Leetcode，加上 Go 对测试的原生支持，我养成了写单元测试的习惯。</p>
+<p>这段时间换了公司，为了熟悉项目，写起了单元测试。同时配合 fastlane 把单元测试、打包、发布等任务都脚本化了。虽然命令已经简化到极致，然而同事们并没有使用的欲望，于是我开始思考是否有更好的方式。</p>
+<p>通过一次公司的分享，了解到了 Gitlab 的 CI/CD，我立马就开始尝试。因为脚本都写好了，集成起来就是写个配置文件，很快就搭建好了，同时也集成了飞书。<br>现在的工作流如下</p>
+<ol>
+<li>开发，push 代码</li>
+<li>Gitlab 触发 <code>依赖安装</code>、<code>编译</code>、<code>单元测试</code> 流程，将结果通过飞书送达，如失败则重复步骤 1</li>
+<li>发布时，push tag</li>
+<li>Gitlab 触发 <code>依赖安装</code>、<code>编译</code>、<code>单元测试</code>、<code>发布</code> 流程，将结果通过飞书送达，如失败则重复步骤 3 或 1</li>
+</ol>
+<p>这样的工作流，可以持续对项目进行验证，在流程上就能提早发现问题；同时发现问题之后，也能根据 push 信息落实到相关开发人员进行修改。<br>而且更进一步，Gitlab 还支持配置单元测试覆盖率，我们是一个 Framework 服务，接入方看到覆盖率会更加有信心接入。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一个工程会涉及到的任务</p>
+<ul>
+<li>依赖安装</li>
+<li>编译</li>
+<li>单元测试</li>
+<li>打包</li>
+<li>发布到测试环境</li>
+<li>发布到生产环境</li>
+</ul>
+<p>什么是 CI/CD，我理解就是根据预先定义的规则以及程序，让以上的任务都自动化的工作流。<br>目前已经有很多 CI/CD 的方案了，如 Github 的 Actions、Travis CI，Gitlab 的 CI/CD。读者们都可以尝试一下。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2017-02-20T22:10:57+08:00"
-              content="2017-02-20">
-          02-20
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/CI-CD/" rel="tag"># CI/CD</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2017/02/20/multithreading/" itemprop="url">
-            <span itemprop="name">闲话iOS多线程</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/20/macho-read-byte/" rel="prev" title="Mach-O 可重定向目标文件剖析">
+      <i class="fa fa-chevron-left"></i> Mach-O 可重定向目标文件剖析
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -246,6 +317,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#手动时代"><span class="nav-number">1.</span> <span class="nav-text">手动时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半自动时代"><span class="nav-number">2.</span> <span class="nav-text">半自动时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动时代"><span class="nav-number">3.</span> <span class="nav-text">自动时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

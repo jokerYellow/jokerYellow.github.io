@@ -179,6 +179,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/30/my-ci-history/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/cuijian.jpg">
+      <meta itemprop="name" content="木鱼">
+      <meta itemprop="description" content="我的精神家园">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木鱼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/30/my-ci-history/" class="post-title-link" itemprop="url">我的 iOS 工程化发展史</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-30 11:45:39 / 修改时间：12:31:52" itemprop="dateCreated datePublished" datetime="2020-06-30T11:45:39+08:00">2020-06-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近对 CI/CD 有一些实践，记录一下。<br>每个人对事物的认识都是有一个发展过程的，我也不例外。</p>
+<h3 id="手动时代"><a href="#手动时代" class="headerlink" title="手动时代"></a>手动时代</h3><p>刚开始 iOS 开发的我，工作流是这样的</p>
+<ol>
+<li>开发功能自测功能没问题，提测</li>
+<li>接着通过 Xcode 手动出包，完了导出来，上传到平台供测试下载</li>
+<li>测试发现 bug，修复 bug，再重复一次步骤 2</li>
+</ol>
+<p>这个流程的缺点是耗费人力，以及没有单元测试，无法确保质量。</p>
+<h3 id="半自动时代"><a href="#半自动时代" class="headerlink" title="半自动时代"></a>半自动时代</h3><p>后来，接触到了 Jenkins 以及一些脚本知识<br>于是我就写了个发包的脚本，依赖安装、编译、打包、发布一气呵成。配合 Jenkins 只需要点击一下就行了。<br>我的工作流变成了如下流程：</p>
+<ol>
+<li>开发</li>
+<li>完成功能自测功能没问题就提测</li>
+<li>Jenkins 出包</li>
+<li>修改 bug，重复步骤 3</li>
+</ol>
+<p>这个流程让我尝到了脚本的甜头，省去了跑 Xcode 出包的繁琐过程。但是仍然没有单元测试，无法确保质量。</p>
+<h3 id="自动时代"><a href="#自动时代" class="headerlink" title="自动时代"></a>自动时代</h3><p>这里要提一件事，有很长一段时间我在用 Go 刷 Leetcode，加上 Go 对测试的原生支持，我养成了写单元测试的习惯。</p>
+<p>这段时间换了公司，为了熟悉项目，写起了单元测试。同时配合 fastlane 把单元测试、打包、发布等任务都脚本化了。虽然命令已经简化到极致，然而同事们并没有使用的欲望，于是我开始思考是否有更好的方式。</p>
+<p>通过一次公司的分享，了解到了 Gitlab 的 CI/CD，我立马就开始尝试。因为脚本都写好了，集成起来就是写个配置文件，很快就搭建好了，同时也集成了飞书。<br>现在的工作流如下</p>
+<ol>
+<li>开发，push 代码</li>
+<li>Gitlab 触发 <code>依赖安装</code>、<code>编译</code>、<code>单元测试</code> 流程，将结果通过飞书送达，如失败则重复步骤 1</li>
+<li>发布时，push tag</li>
+<li>Gitlab 触发 <code>依赖安装</code>、<code>编译</code>、<code>单元测试</code>、<code>发布</code> 流程，将结果通过飞书送达，如失败则重复步骤 3 或 1</li>
+</ol>
+<p>这样的工作流，可以持续对项目进行验证，在流程上就能提早发现问题；同时发现问题之后，也能根据 push 信息落实到相关开发人员进行修改。<br>而且更进一步，Gitlab 还支持配置单元测试覆盖率，我们是一个 Framework 服务，接入方看到覆盖率会更加有信心接入。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一个工程会涉及到的任务</p>
+<ul>
+<li>依赖安装</li>
+<li>编译</li>
+<li>单元测试</li>
+<li>打包</li>
+<li>发布到测试环境</li>
+<li>发布到生产环境</li>
+</ul>
+<p>什么是 CI/CD，我理解就是根据预先定义的规则以及程序，让以上的任务都自动化的工作流。<br>目前已经有很多 CI/CD 的方案了，如 Github 的 Actions、Travis CI，Gitlab 的 CI/CD。读者们都可以尝试一下。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/20/macho-read-byte/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -746,7 +840,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-08 18:33:19" itemprop="dateModified" datetime="2020-01-08T18:33:19+08:00">2020-01-08</time>
+                <time title="修改时间：2020-06-25 10:34:27" itemprop="dateModified" datetime="2020-06-25T10:34:27+08:00">2020-06-25</time>
               </span>
 
           
@@ -841,7 +935,7 @@
 <p>可以看出这段二进制编码实际上是<code>UTF-8</code>编码，按照上表的规则，可以推导出其<code>Unicode</code>字符</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD </span><br><span class="line">B(11100110  10110001 10011111) --&gt; |Unicode| C(0110 1100 0101 1111)</span><br><span class="line">C --&gt; |十六进制| D(Unicode:江,U+6c5f)</span><br></pre></td></tr></table></figure>
 <h4 id="应用：修改机器码字符段"><a href="#应用：修改机器码字符段" class="headerlink" title="应用：修改机器码字符段"></a>应用：修改机器码字符段</h4><p>学以致用，这样效果才会好<br>这是一段简单的输出字符串的程序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello,world!黄"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>编译<br><code>$ gcc main.c | ./a.out</code><br>输出：<code>hello,world!黄</code></p>
-<p>查看目标文件的段信息<br><code>$ objdump -s a.out</code><br>输出里的字符段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure><br>我们可以知道，这一串十六进制编码代表了<code>UTF-8</code>编码的<code>hello,world!黄</code>。可以尝试对其进行修改<br><code>vim -b a.out</code><br>打开十六进制模式<br><code>%!xxd</code><br>查找到hello部分进行修改<br><code>/hello</code><br>恢复成二进制模式<br><code>%!xxd -r</code><br>保存退出<br><code>wq!</code><br>查看字符段<br><code>$ objdump -s a.out</code><br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure></p>
+<p>查看目标文件的段信息<br><code>$ objdump -s a.out</code><br>输出里的字符段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure><br>我们可以知道，这一串十六进制编码代表了<code>UTF-8</code>编码的<code>hello,world!黄</code>。可以尝试对其进行修改<br><code>vim -b a.out</code><br>打开十六进制模式<br><code>%!xxd</code><br>查找到hello部分进行修改，将 <code>e9bb84</code>（黄） 改成 <code>e6b19f</code>（江）。<br><code>/hello</code><br>恢复成二进制模式<br><code>%!xxd -r</code><br>保存退出<br><code>wq!</code><br>查看字符段<br><code>$ objdump -s a.out</code><br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e6b19f00  hello,world!....</span><br></pre></td></tr></table></figure></p>
 <p><code>$ ./a.out</code><br>输出：<code>hello,world!江</code><br>这样，我们就修改了机器码。</p>
 <p>到这里，笔者也想通了一些问题，比如<code>hardCode</code>进代码里的密钥肯定是不安全的，存在被查看以及被篡改的风险；二进制文件也是不安全的，所以<code>Apple</code>使用了代码签名的机制，来保证设备上运行的代码是未被篡改过的。</p>
 <h6 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h6><ul>
@@ -1321,87 +1415,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/04/React-Native-environment-setup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/cuijian.jpg">
-      <meta itemprop="name" content="木鱼">
-      <meta itemprop="description" content="我的精神家园">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="木鱼的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/09/04/React-Native-environment-setup/" class="post-title-link" itemprop="url">React Native 初探一：Mac + iOS 开发环境搭建</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-04 18:50:01" itemprop="dateCreated datePublished" datetime="2016-09-04T18:50:01+08:00">2016-09-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-21 21:05:13" itemprop="dateModified" datetime="2019-11-21T21:05:13+08:00">2019-11-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h2><p>1 . 安装 node 和 watchman。</p>
-<pre><code>brew install node
-brew install watchman
-</code></pre><p>2 . 安装 React Native。</p>
-<pre><code>npm install -g react-native-cli
-</code></pre><p>如遇到权限问题，请用</p>
-<pre><code>sudo npm install -g react-native-cli
-</code></pre><p>3 . 安装 Xcode，<a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12" target="_blank" rel="noopener">Mac App Store</a> 安装既可。<br>4 . 验证是否安装成功，可通过如下命令新建和启动项目试试。</p>
-<pre><code>react-native init demoProject
-cd demoProject
-react-native run-ios
-</code></pre><p>启动过程中如果遇到问题，可能是初始化中漏装了一个包，解决途径执行。</p>
-<pre><code>npm install
-</code></pre><p>再启动，网上下载的项目出现启动问题也可尝试执行此命令。</p>
-<h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><p>1 . 接下来选择趁手的 IDE，尝试过 Sublime 和 atom 之后，目前我使用的 WebStorm + <a href="https://github.com/virtoolswebplayer/ReactNative-LiveTemplate" target="_blank" rel="noopener">ReactNative-LiveTemplate插件</a>。<br>2 . 日志可以在项目路径下执行以下命令查看。</p>
-<pre><code>react-native log-ios
-</code></pre><p>3 . Debug 起来也很方便，请先安装好 Chrome，在 iOS 模拟器中 <em>Command⌘ + D</em>，选择 <em>Debug JS Remotely</em>，就可以在 Chrome 愉快的 Debug 了，其它的选项也可以尝试一下。感慨 ReactNative 真是一个伟大的项目，前端真是神奇，FaceBook 真是一个伟大的公司。<br><strong>以上信息全部来自<a href="https://facebook.github.io/react-native/" target="_blank" rel="noopener">React Native官网</a>。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1452,7 +1465,7 @@ react-native run-ios
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1462,7 +1475,7 @@ react-native run-ios
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

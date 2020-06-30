@@ -53,7 +53,7 @@
 <meta property="og:description" content="问题    11100110 10110001 10011111表示什么？  ASCII American Standard Code for Information Interchange，美国信息交换标准代码   ASCII最初由美国提出，解决了英语世界在计算机里的编码问题。ASCII从00开始，一直到7f，包含了128个字符，其中33个控制字符，95个可见字符。  控制字符比较常见的如换行键">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-23T13:16:59.000Z">
-<meta property="article:modified_time" content="2020-01-08T10:33:19.602Z">
+<meta property="article:modified_time" content="2020-06-25T02:34:27.756Z">
 <meta property="article:author" content="木鱼">
 <meta property="article:tag" content="utf-8">
 <meta name="twitter:card" content="summary">
@@ -212,7 +212,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-08 18:33:19" itemprop="dateModified" datetime="2020-01-08T18:33:19+08:00">2020-01-08</time>
+                <time title="修改时间：2020-06-25 10:34:27" itemprop="dateModified" datetime="2020-06-25T10:34:27+08:00">2020-06-25</time>
               </span>
 
           
@@ -307,7 +307,7 @@
 <p>可以看出这段二进制编码实际上是<code>UTF-8</code>编码，按照上表的规则，可以推导出其<code>Unicode</code>字符</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph TD </span><br><span class="line">B(11100110  10110001 10011111) --&gt; |Unicode| C(0110 1100 0101 1111)</span><br><span class="line">C --&gt; |十六进制| D(Unicode:江,U+6c5f)</span><br></pre></td></tr></table></figure>
 <h4 id="应用：修改机器码字符段"><a href="#应用：修改机器码字符段" class="headerlink" title="应用：修改机器码字符段"></a>应用：修改机器码字符段</h4><p>学以致用，这样效果才会好<br>这是一段简单的输出字符串的程序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello,world!黄"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>编译<br><code>$ gcc main.c | ./a.out</code><br>输出：<code>hello,world!黄</code></p>
-<p>查看目标文件的段信息<br><code>$ objdump -s a.out</code><br>输出里的字符段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure><br>我们可以知道，这一串十六进制编码代表了<code>UTF-8</code>编码的<code>hello,world!黄</code>。可以尝试对其进行修改<br><code>vim -b a.out</code><br>打开十六进制模式<br><code>%!xxd</code><br>查找到hello部分进行修改<br><code>/hello</code><br>恢复成二进制模式<br><code>%!xxd -r</code><br>保存退出<br><code>wq!</code><br>查看字符段<br><code>$ objdump -s a.out</code><br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure></p>
+<p>查看目标文件的段信息<br><code>$ objdump -s a.out</code><br>输出里的字符段如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e9bb8400  hello,world!....</span><br></pre></td></tr></table></figure><br>我们可以知道，这一串十六进制编码代表了<code>UTF-8</code>编码的<code>hello,world!黄</code>。可以尝试对其进行修改<br><code>vim -b a.out</code><br>打开十六进制模式<br><code>%!xxd</code><br>查找到hello部分进行修改，将 <code>e9bb84</code>（黄） 改成 <code>e6b19f</code>（江）。<br><code>/hello</code><br>恢复成二进制模式<br><code>%!xxd -r</code><br>保存退出<br><code>wq!</code><br>查看字符段<br><code>$ objdump -s a.out</code><br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Contents of section __cstring:</span><br><span class="line"> 100000fa2 68656c6c 6f2c776f 726c6521 e6b19f00  hello,world!....</span><br></pre></td></tr></table></figure></p>
 <p><code>$ ./a.out</code><br>输出：<code>hello,world!江</code><br>这样，我们就修改了机器码。</p>
 <p>到这里，笔者也想通了一些问题，比如<code>hardCode</code>进代码里的密钥肯定是不安全的，存在被查看以及被篡改的风险；二进制文件也是不安全的，所以<code>Apple</code>使用了代码签名的机制，来保证设备上运行的代码是未被篡改过的。</p>
 <h6 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h6><ul>
@@ -394,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -404,7 +404,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
